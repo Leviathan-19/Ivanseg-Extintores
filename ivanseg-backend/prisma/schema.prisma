@@ -96,8 +96,7 @@ model MantenimientoGeneral {
   observaciones             String?
   createdAt                 DateTime @default(now()) @map("created_at")
 
-  establecimiento Establecimiento
-      @relation(fields: [establecimientoId], references: [id])
+  establecimiento Establecimiento @relation(fields: [establecimientoId], references: [id])
 
   @@index([establecimientoId])
   @@index([fechaProximoMantenimiento])
