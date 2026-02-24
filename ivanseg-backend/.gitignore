@@ -25,3 +25,5 @@ Thumbs.db
 
 # Optional Docker overrides
 docker-compose.override.yml
+
+prisma/migrations/

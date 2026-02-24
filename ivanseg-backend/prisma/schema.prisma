@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,41 +7,102 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum EstadoMantenimiento {
+  pendiente
+  completado
+  vencido
+}
+
 model Cliente {
   id             String   @id @default(uuid())
-  nombreCompleto String
+  nombreCompleto String   @map("nombre_completo")
   telefono       String
-  razonSocial    String
+  razonSocial    String   @map("razon_social")
   cedula         String?
   correo         String?
-  createdAt      DateTime @default(now())
+  createdAt      DateTime @default(now()) @map("created_at")
 
   establecimientos Establecimiento[]
+
+  @@index([telefono])
+  @@index([razonSocial])
+  @@index([nombreCompleto])
+
+  @@map("clientes")
 }
 
 model Establecimiento {
   id             String   @id @default(uuid())
-  clienteId      String
+  clienteId      String   @map("cliente_id")
   latitud        Float
   longitud       Float
-  direccionTexto String?
-  nombreEst      String?
+  direccionTexto String?  @map("direccion_texto")
+  nombreEst      String?  @map("nombre_establecimiento")
   observaciones  String?
-  createdAt      DateTime @default(now())
+  createdAt      DateTime @default(now()) @map("created_at")
 
-  cliente        Cliente  @relation(fields: [clienteId], references: [id])
-  mantenimientos Mantenimiento[]
+  cliente               Cliente                @relation(fields: [clienteId], references: [id])
+  extintores            Extintor[]
+  mantenimientosGeneral MantenimientoGeneral[]
+
+  @@index([clienteId])
+  @@index([latitud, longitud])
+
+  @@map("establecimientos")
+}
+
+model Extintor {
+  id                String   @id @default(uuid())
+  establecimientoId String   @map("establecimiento_id")
+  tipo              String
+  pesoKg            Float    @map("peso_kg")
+  numeroSerie       String?  @map("numero_serie")
+  ubicacionInterna  String?  @map("ubicacion_interna")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  establecimiento Establecimiento @relation(fields: [establecimientoId], references: [id])
+  mantenimientos  Mantenimiento[]
+
+  @@index([establecimientoId])
+  @@index([numeroSerie])
+  @@index([tipo])
+
+  @@map("extintores")
 }
 
 model Mantenimiento {
   id                        String   @id @default(uuid())
-  establecimientoId         String
-  fechaBaseMantenimiento    DateTime
-  fechaUltimoMantenimiento  DateTime?
-  fechaProximoMantenimiento DateTime
-  estado                    String   @default("pendiente")
+  extintorId                String   @map("extintor_id")
+  fechaBaseMantenimiento    DateTime @map("fecha_base_mantenimiento")
+  fechaUltimoMantenimiento  DateTime? @map("fecha_ultimo_mantenimiento")
+  fechaProximoMantenimiento DateTime @map("fecha_proximo_mantenimiento")
+  estado                    EstadoMantenimiento @default(pendiente)
   observaciones             String?
-  createdAt                 DateTime @default(now())
+  createdAt                 DateTime @default(now()) @map("created_at")
+
+  extintor Extintor @relation(fields: [extintorId], references: [id])
+
+  @@index([extintorId])
+  @@index([fechaProximoMantenimiento])
+  @@index([estado])
+
+  @@map("mantenimientos")
+}
+
+model MantenimientoGeneral {
+  id                        String   @id @default(uuid())
+  establecimientoId         String   @map("establecimiento_id")
+  fechaProximoMantenimiento DateTime @map("fecha_proximo_mantenimiento")
+  estado                    EstadoMantenimiento @default(pendiente)
+  competenciaActual         String?  @map("competencia_actual")
+  observaciones             String?
+  createdAt                 DateTime @default(now()) @map("created_at")
 
   establecimiento Establecimiento @relation(fields: [establecimientoId], references: [id])
+
+  @@index([establecimientoId])
+  @@index([fechaProximoMantenimiento])
+  @@index([estado])
+
+  @@map("mantenimientos_generales")
 }
