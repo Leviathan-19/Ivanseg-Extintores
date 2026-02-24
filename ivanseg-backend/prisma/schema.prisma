@@ -17,7 +17,6 @@ model Cliente {
   id             String   @id @default(uuid())
   nombreCompleto String   @map("nombre_completo")
   telefono       String
-  razonSocial    String   @map("razon_social")
   cedula         String?
   correo         String?
   createdAt      DateTime @default(now()) @map("created_at")
@@ -25,7 +24,6 @@ model Cliente {
   establecimientos Establecimiento[]
 
   @@index([telefono])
-  @@index([razonSocial])
   @@index([nombreCompleto])
 
   @@map("clientes")
@@ -37,7 +35,7 @@ model Establecimiento {
   latitud        Float
   longitud       Float
   direccionTexto String?  @map("direccion_texto")
-  nombreEst      String?  @map("nombre_establecimiento")
+  razonSocial    String   @map("razon_social")
   observaciones  String?
   createdAt      DateTime @default(now()) @map("created_at")
 
@@ -47,7 +45,7 @@ model Establecimiento {
 
   @@index([clienteId])
   @@index([latitud, longitud])
-
+  @@index([razonSocial])
   @@map("establecimientos")
 }
 
@@ -92,13 +90,14 @@ model Mantenimiento {
 model MantenimientoGeneral {
   id                        String   @id @default(uuid())
   establecimientoId         String   @map("establecimiento_id")
-  fechaProximoMantenimiento DateTime @map("fecha_proximo_mantenimiento")
+  fechaProximoMantenimiento DateTime @db.Date @map("fecha_proximo_mantenimiento")
   estado                    EstadoMantenimiento @default(pendiente)
   competenciaActual         String?  @map("competencia_actual")
   observaciones             String?
   createdAt                 DateTime @default(now()) @map("created_at")
 
-  establecimiento Establecimiento @relation(fields: [establecimientoId], references: [id])
+  establecimiento Establecimiento
+      @relation(fields: [establecimientoId], references: [id])
 
   @@index([establecimientoId])
   @@index([fechaProximoMantenimiento])
