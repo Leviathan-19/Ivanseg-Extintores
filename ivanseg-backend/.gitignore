@@ -27,3 +27,4 @@ Thumbs.db
 docker-compose.override.yml
 
 prisma/migrations/
+backend-notes.txt

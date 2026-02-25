@@ -1,8 +1,27 @@
 import { Router } from "express";
-import { createClienteWithEstablecimientoController } from "../controllers/clienteEstablecimiento.controller";
+import {
+  createClienteEstablecimientoController,
+  getAllClientesEstablecimientosController,
+  getClienteEstablecimientoByIdController,
+  updateClienteEstablecimientoController,
+  deleteClienteEstablecimientoController,
+} from "../controllers/clienteEstablecimiento.controller";
 
 const router = Router();
 
-router.post("/", createClienteWithEstablecimientoController);
+// CREATE
+router.post("/", createClienteEstablecimientoController);
+
+// GET ALL
+router.get("/", getAllClientesEstablecimientosController);
+
+// GET BY ID
+router.get("/:id", getClienteEstablecimientoByIdController);
+
+// UPDATE
+router.put("/:clienteId/:establecimientoId", updateClienteEstablecimientoController);
+
+// DELETE
+router.delete("/:id", deleteClienteEstablecimientoController);
 
 export default router;
