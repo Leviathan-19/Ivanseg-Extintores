@@ -58,18 +58,21 @@ export const getMantenimientoById = async (
 export const updateMantenimiento = async (
   establecimientoId: string,
   id: string,
-  data: {
-    fechaProximoMantenimiento?: Date;
-    estado?: "pendiente" | "completado" | "vencido";
-    competenciaActual?: string;
-    observaciones?: string;
-  }
+  data: any
 ) => {
-  return await prisma.mantenimientoGeneral.updateMany({
+  const mantenimiento = await prisma.mantenimientoGeneral.findFirst({
     where: {
       id,
       establecimientoId,
     },
+  });
+
+  if (!mantenimiento) {
+    throw new Error("Mantenimiento no encontrado");
+  }
+
+  return await prisma.mantenimientoGeneral.update({
+    where: { id },
     data,
   });
 };
