@@ -8,3 +8,12 @@ export const createUbicacionSchema = z.object({
   latitud: z.number().optional(),
   longitud: z.number().optional(),
 });
+
+export const updateUbicacionSchema =
+  createUbicacionSchema.partial();
+
+export type CreateUbicacionInput =
+  z.infer<typeof createUbicacionSchema>;
+
+export type UpdateUbicacionInput =
+  z.infer<typeof updateUbicacionSchema>;
