@@ -7,7 +7,19 @@ export const createVisitaService = async (data: any) => {
 export const getVisitasService = async () => {
   return prisma.visita.findMany({
     include: {
-      ubicacion: true
+      barrio: {
+        include: {
+          parroquia: {
+            include: {
+              canton: {
+                include: {
+                  provincia: true
+                }
+              }
+            }
+          }
+        }
+      }
     },
     orderBy: {
       fechaVisita: "desc"
@@ -17,7 +29,10 @@ export const getVisitasService = async () => {
 
 export const getVisitaByIdService = async (id: string) => {
   return prisma.visita.findUnique({
-    where: { id }
+    where: { id },
+    include: {
+      barrio: true
+    }
   });
 };
 
