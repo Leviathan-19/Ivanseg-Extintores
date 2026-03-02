@@ -8,7 +8,7 @@ import cantonRoutes from "./routes/canton.route";
 import parroquiaRoutes from "./routes/parroquia.route";
 import barrioRoutes from "./routes/barrio.route";
 import ubicacionRoutes from "./routes/ubicacion.route";
-//import visitaRoutes from "./routes/visita.route";
+import visitaRoutes from "./routes/visita.route";
 import { errorHandler } from "./middlewares/error.middleware";
 
 const app = express();
@@ -25,7 +25,7 @@ app.use("/api/cantones", cantonRoutes);
 app.use("/api/parroquias", parroquiaRoutes);
 app.use("/api/barrios", barrioRoutes);
 app.use("/api/ubicaciones", ubicacionRoutes);
-//app.use("/api/visitas", visitaRoutes);
+app.use("/api/visitas", visitaRoutes);
 app.use(errorHandler);
 
 export default app;
