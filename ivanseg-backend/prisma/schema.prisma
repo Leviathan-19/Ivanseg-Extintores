@@ -137,47 +137,34 @@ model Barrio {
   parroquiaId  String      @map("parroquia_id")
 
   parroquia    Parroquia   @relation(fields: [parroquiaId], references: [id])
-  ubicaciones  Ubicacion[]
+  visitas  Visita[]
 
   @@unique([nombre, parroquiaId])
   @@index([parroquiaId])
   @@map("barrios")
 }
 
-model Ubicacion {
-  id              String     @id @default(uuid())
-  barrioId        String     @map("barrio_id")
+model Visita {
+  id              String    @id @default(uuid())
+  barrioId        String    @map("barrio_id")
+  nombreCliente   String?   @map("nombre_cliente")
+  razonSocial     String    @map("razon_social")
+  telefono        String?
+  correo          String?
   callePrincipal  String     @map("calle_principal")
   calleSecundaria String?    @map("calle_secundaria")
   numeracion      String?
   latitud         Float?
   longitud        Float?
-  createdAt       DateTime   @default(now()) @map("created_at")
+  estadoVisita    String?    @default("pendiente") @map("estado_visita")
+  proximaVisita   DateTime  @map("proxima_visita") @db.Date
+  fechaVisita     DateTime  @default(now()) @map("fecha_visita")
 
   barrio          Barrio     @relation(fields: [barrioId], references: [id])
-  visitas         Visita[]
 
-  @@index([barrioId])
-  @@index([latitud, longitud])
-  @@map("ubicaciones")
-}
-
-model Visita {
-  id             String    @id @default(uuid())
-  nombreCliente  String?   @map("nombre_cliente")
-  razonSocial    String    @map("razon_social")
-  telefono       String?
-  correo         String?
-  estadoVisita   String    @default("pendiente") @map("estado_visita")
-  proximaVisita  DateTime  @map("proxima_visita") @db.Date
-  fechaVisita    DateTime  @default(now()) @map("fecha_visita")
-  ubicacionId    String    @map("ubicacion_id")
-  createdAt      DateTime  @default(now()) @map("created_at")
-
-  ubicacion      Ubicacion @relation(fields: [ubicacionId], references: [id])
-
-  @@index([ubicacionId])
   @@index([estadoVisita])
   @@index([proximaVisita])
+  @@index([barrioId])
+  @@index([latitud, longitud])
   @@map("visitas")
 }
