@@ -1,11 +1,9 @@
 services:
-  - type: static
+  - type: web
     name: ivanseg-frontend
-    env: node
-    plan: free
-    root: .
+    runtime: node
+    repo: https://github.com/Leviathan-19/Ivanseg-Extintores
+    branch: main
     buildCommand: npm install && npm run build
-    publishPath: dist/src
-    routes:
-      - path: /*
-        rewrite: /index.html
+    startCommand: npm start
+    publishDir: dist/src
