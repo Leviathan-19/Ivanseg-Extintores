@@ -3,120 +3,150 @@
 
     <form [formGroup]="form">
 
-        <div class="mb-3">
-            <label>Provincia</label>
-            <select formControlName="provinciaId">
-                <option value="">Seleccionar
-                </option>
-                <option *ngFor="let p of provincias" [value]="p.id">
-                    {{ p.nombre }}
-                </option>
-            </select>
-        </div>
+        <!-- SECCIÓN 1: UBICACIÓN -->
+        <div class="seccion">
+            <div class="seccion-header" (click)="toggleUbicacion()">
+                <h3>📍 Ubicación </h3> 
+                <span class="toggle-icon">{{ seccionUbicacionExpandida ? '▼' : '▶' }}</span>
+            </div>
+            <div class="seccion-content" [class.expandida]="seccionUbicacionExpandida">
+                <div class="mb-3">
+                    <label>Provincia<span class="text-danger"></span></label>
+                    <select formControlName="provinciaId" class="form-control">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let p of provincias" [value]="p.id">
+                            {{ p.nombre }}
+                        </option>
+                    </select>
+                </div>
 
-        <div class="mb-3">
-            <label>Cantón</label>
-            <select formControlName="cantonId">
-                <option value="">Seleccione</option>
-                <option *ngFor="let c of cantones" [value]="c.id">
-                    {{ c.nombre }}
-                </option>
-            </select>
-        </div>
+                <div class="mb-3">
+                    <label>Cantón<span class="text-danger"></span></label>
+                    <select formControlName="cantonId" class="form-control">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let c of cantones" [value]="c.id">
+                            {{ c.nombre }}
+                        </option>
+                    </select>
+                </div>
 
-        <div class="mb-3">
-            <label>Parroquia</label>
-            <select class="form-control" formControlName="parroquiaId">
-                <option value="">Seleccione</option>
-                <option *ngFor="let p of parroquias" [value]="p.id">
-                    {{ p.nombre }}
-                </option>
-            </select>
-        </div>
+                <div class="mb-3">
+                    <label>Parroquia<span class="text-danger"></span></label>
+                    <select class="form-control" formControlName="parroquiaId">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let p of parroquias" [value]="p.id">
+                            {{ p.nombre }}
+                        </option>
+                    </select>
+                </div>
 
-        <div class="mb-3">
-            <label>Barrio</label>
-            <select class="form-control" formControlName="barrioId">
-                <option value="">Seleccione</option>
-                <option *ngFor="let b of barrios" [value]="b.id">
-                    {{ b.nombre }}
-                </option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label>Razón Social <span class="text-danger"></span></label>
-            <input type="text" formControlName="razonSocial" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label>Nombre del Cliente</label>
-            <input type="text" formControlName="nombreCliente" class="form-control">
-            <small class="text-muted">no obligatorio</small>
-        </div>
-
-        <div class="mb-3">
-            <label>Teléfono</label>
-            <input type="tel" formControlName="telefono" class="form-control">
-            <small class="text-muted">no obligatorio</small>
-        </div>
-
-        <div class="mb-3">
-            <label>Correo Electrónico</label>
-            <input type="email" formControlName="correo" class="form-control">
-            <small class="text-muted">no obligatorio</small>
-            <div *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched" class="text-danger">
-                Ingrese un correo válido
+                <div class="mb-3">
+                    <label>Barrio <span class="text-danger"></span></label>
+                    <select class="form-control" formControlName="barrioId">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let b of barrios" [value]="b.id">
+                            {{ b.nombre }}
+                        </option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <div class="mb-3">
-            <label>Calle Principal <span class="text-danger"></span></label>
-            <input type="text" formControlName="callePrincipal" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label>Calle Secundaria</label>
-            <input type="text" formControlName="calleSecundaria" class="form-control">
-            <small class="text-muted">no obligatorio</small>
-        </div>
-        <div class="mb-3">
-            <label>Numeración</label>
-            <input type="text" formControlName="numeracion" class="form-control">
-            <small class="text-muted">no obligatorio</small>
-        </div>
-        <div class="mb-3">
-            <label>Próxima Visita <span class="text-danger"></span></label>
-            <input type="date" formControlName="proximaVisita" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label>Estado de la Visita <span class="text-danger"></span></label>
-            <select class="form-control" formControlName="estadoVisita">
-                <option value="">Seleccione un estado</option>
-                <option value="pendiente">Pendiente</option>
-                <option value="completada">Completada</option>
-                <option value="cancelada">Cancelada</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <button type="button" class="btn btn-primary" (click)="obtenerUbicacion()" [disabled]="cargandoUbicacion">
-
-                {{ cargandoUbicacion ? 'Obteniendo ubicación...' : '📍 Dar ubicación' }}
-
-            </button>
-        </div>
-
-        <div class="row mt-3">
-            <div class="col">
-                <label>Latitud <span class="text-danger"></span></label>
-                <input type="text" formControlName="latitud" class="form-control" readonly>
+        <!-- SECCIÓN 2: CAMPOS OBLIGATORIOS -->
+        <div class="seccion">
+            <div class="seccion-header" (click)="toggleObligatorios()">
+                <h3>⚠️ Campos obligatorios</h3>
+                <span class="toggle-icon">{{ seccionObligatoriosExpandida ? '▼' : '▶' }}</span>
             </div>
+            <div class="seccion-content" [class.expandida]="seccionObligatoriosExpandida">
+                <div class="mb-3">
+                    <label>Razón Social <span class="text-danger"></span></label>
+                    <input type="text" formControlName="razonSocial" class="form-control">
+                </div>
 
-            <div class="col">
-                <label>Longitud <span class="text-danger"></span></label>
-                <input type="text" formControlName="longitud" class="form-control" readonly>
+                <div class="mb-3">
+                    <label>Calle Principal <span class="text-danger"></span></label>
+                    <input type="text" formControlName="callePrincipal" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Próxima Visita <span class="text-danger"></span></label>
+                    <input type="date" formControlName="proximaVisita" class="form-control">
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Latitud <span class="text-danger"></span></label>
+                        <input type="text" formControlName="latitud" class="form-control" readonly>
+                    </div>
+                    <div class="col">
+                        <label>Longitud <span class="text-danger"></span></label>
+                        <input type="text" formControlName="longitud" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button type="button" class="btn btn-primary" (click)="obtenerUbicacion()" [disabled]="cargandoUbicacion">
+                        {{ cargandoUbicacion ? 'Obteniendo ubicación...' : '📍 Dar ubicación' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: CAMPOS NO OBLIGATORIOS -->
+        <div class="seccion">
+            <div class="seccion-header" (click)="toggleNoObligatorios()">
+                <h3>📝 Información adicional (no obligatoria)</h3>
+                <span class="toggle-icon">{{ seccionNoObligatoriosExpandida ? '▼' : '▶' }}</span>
+            </div>
+            <div class="seccion-content" [class.expandida]="seccionNoObligatoriosExpandida">
+                <div class="mb-3">
+                    <label>Nombre del Cliente</label>
+                    <input type="text" formControlName="nombreCliente" class="form-control">
+                    <small class="text-muted">No obligatorio</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Teléfono</label>
+                    <input type="tel" formControlName="telefono" class="form-control">
+                    <small class="text-muted">No obligatorio</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Correo Electrónico</label>
+                    <input type="email" formControlName="correo" class="form-control">
+                    <small class="text-muted">No obligatorio</small>
+                    <div *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched" class="text-danger">
+                        Ingrese un correo válido
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Calle Secundaria</label>
+                    <input type="text" formControlName="calleSecundaria" class="form-control">
+                    <small class="text-muted">No obligatorio</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Numeración</label>
+                    <input type="text" formControlName="numeracion" class="form-control">
+                    <small class="text-muted">No obligatorio</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Estado de la Visita</label>
+                    <select class="form-control" formControlName="estadoVisita">
+                        <option value="">Seleccione un estado</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="completada">Completada</option>
+                        <option value="cancelada">Cancelada</option>
+                    </select>
+                    <small class="text-muted">No obligatorio</small>
+                </div>
             </div>
         </div>
 
         <button type="button" class="btn btn-success" (click)="crearVisita()" [disabled]="form.invalid">
-
             Guardar Visita
         </button>
 

@@ -1,5 +1,79 @@
 /* main-visita.css */
+/* Estilos para las secciones expandibles */
+.seccion {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+}
 
+.seccion-header {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.seccion-header:hover {
+    background: #e9ecef;
+}
+
+.seccion-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.toggle-icon {
+    font-size: 1.2rem;
+    color: #3498db;
+    transition: transform 0.3s ease;
+}
+
+.seccion-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.seccion-content.expandida {
+    max-height: 2000px; /* Un valor grande para que quepa todo el contenido */
+    opacity: 1;
+    padding: 1.5rem;
+}
+
+/* Ajusta los márgenes para cuando está expandido */
+.seccion-content.expandida .mb-3:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* El resto de tus estilos existentes */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* ... resto de tus estilos existentes ... */
 .container {
     max-width: 800px;
     margin: 2rem auto;

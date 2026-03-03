@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../../../../core/services/api.service';
 import { Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-main-visita',
   standalone: true,
@@ -19,6 +20,12 @@ export class MainVisita implements OnInit {
   parroquias: any[] = [];
   barrios: any[] = [];
 
+  seccionUbicacionExpandida = false;
+  seccionObligatoriosExpandida = false;
+  seccionNoObligatoriosExpandida = false;
+
+  cargandoUbicacion = false;
+
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
@@ -27,26 +34,34 @@ export class MainVisita implements OnInit {
       provinciaId: [''],
       cantonId: [''],
       parroquiaId: [''],
-
       barrioId: ['', Validators.required],
-
       razonSocial: ['', [Validators.required, Validators.minLength(2)]],
       nombreCliente: [''],
-
       telefono: [''],
       correo: ['', Validators.email],
-
       callePrincipal: ['', Validators.required],
       calleSecundaria: [''],
       numeracion: [''],
-
       latitud: [null],
       longitud: [null],
-
       estadoVisita: [''],
       proximaVisita: ['', Validators.required],
     });
   }
+
+  // Métodos para toggle de secciones
+  toggleUbicacion() {
+    this.seccionUbicacionExpandida = !this.seccionUbicacionExpandida;
+  }
+
+  toggleObligatorios() {
+    this.seccionObligatoriosExpandida = !this.seccionObligatoriosExpandida;
+  }
+
+  toggleNoObligatorios() {
+    this.seccionNoObligatoriosExpandida = !this.seccionNoObligatoriosExpandida;
+  }
+
   ngOnInit() {
     this.api.getProvincias().subscribe((data) => {
       this.provincias = data;
@@ -54,12 +69,10 @@ export class MainVisita implements OnInit {
 
     this.form.get('provinciaId')?.valueChanges.subscribe((provinciaId) => {
       if (!provinciaId) return;
-
       this.api.getCantones(provinciaId).subscribe((data) => {
         this.cantones = data;
         this.parroquias = [];
         this.barrios = [];
-
         this.form.patchValue({
           cantonId: '',
           parroquiaId: '',
@@ -69,17 +82,10 @@ export class MainVisita implements OnInit {
     });
 
     this.form.get('cantonId')?.valueChanges.subscribe((cantonId) => {
-      console.log('Canton ID:', cantonId);
-
       if (!cantonId) return;
-
       this.api.getParroquias(cantonId).subscribe((data) => {
-        console.log('Parroquias recibidas:', data);
-
         this.parroquias = data;
-
         this.barrios = [];
-
         this.form.patchValue({
           parroquiaId: '',
           barrioId: '',
@@ -89,23 +95,20 @@ export class MainVisita implements OnInit {
 
     this.form.get('parroquiaId')?.valueChanges.subscribe((parroquiaId) => {
       if (!parroquiaId) return;
-
       this.api.getBarrios(parroquiaId).subscribe((data) => {
         this.barrios = data;
       });
     });
   }
-  cargandoUbicacion = false;
+
   obtenerUbicacion() {
     this.cargandoUbicacion = true;
-
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.form.patchValue({
           latitud: position.coords.latitude,
           longitud: position.coords.longitude,
         });
-
         this.cargandoUbicacion = false;
       },
       (error) => {
@@ -114,6 +117,7 @@ export class MainVisita implements OnInit {
       },
     );
   }
+
   crearVisita() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -121,7 +125,6 @@ export class MainVisita implements OnInit {
     }
 
     const formValue = this.form.value;
-
     const toNull = (valor: any) => (valor === '' || valor === undefined ? null : valor);
 
     const payload = {
@@ -129,19 +132,15 @@ export class MainVisita implements OnInit {
       razonSocial: formValue.razonSocial,
       callePrincipal: formValue.callePrincipal,
       proximaVisita: formValue.proximaVisita,
-
       nombreCliente: toNull(formValue.nombreCliente),
       telefono: toNull(formValue.telefono),
       correo: toNull(formValue.correo),
       calleSecundaria: toNull(formValue.calleSecundaria),
       numeracion: toNull(formValue.numeracion),
       estadoVisita: toNull(formValue.estadoVisita),
-
       latitud: formValue.latitud ?? null,
       longitud: formValue.longitud ?? null,
     };
-
-    console.log('PAYLOAD FINAL:', payload);
 
     this.api.crearVisita(payload).subscribe({
       next: () => {
