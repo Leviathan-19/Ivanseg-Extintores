@@ -10,26 +10,20 @@ interface VisitaParams {
 }
 export const createVisitaController = async (
   req: Request<{}, {}, any>,
-  res: Response
+  res: Response,
 ) => {
   try {
     const data = createVisitaSchema.parse(req.body);
 
-    const visita =
-      await visitaService.createVisitaService(data);
+    const visita = await visitaService.createVisitaService(data);
 
     return res.status(201).json(visita);
   } catch (error) {
-    return res.status(400).json({
-      message: "Error al crear visita",
-      error,
-    });
+    console.error(" ERROR REAL PRISMA:", error);
+    res.status(400).json(error);
   }
 };
-export const getVisitasController = async (
-  _req: Request,
-  res: Response
-) => {
+export const getVisitasController = async (_req: Request, res: Response) => {
   try {
     const visitas = await visitaService.getVisitasService();
     return res.json(visitas);
@@ -41,13 +35,12 @@ export const getVisitasController = async (
 };
 export const getVisitaByIdController = async (
   req: Request<VisitaParams>,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
 
-    const visita =
-      await visitaService.getVisitaByIdService(id);
+    const visita = await visitaService.getVisitaByIdService(id);
 
     if (!visita) {
       return res.status(404).json({
@@ -64,14 +57,13 @@ export const getVisitaByIdController = async (
 };
 export const updateVisitaController = async (
   req: Request<VisitaParams>,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
     const data = updateVisitaSchema.parse(req.body);
 
-    const updated =
-      await visitaService.updateVisitaService(id, data);
+    const updated = await visitaService.updateVisitaService(id, data);
 
     return res.json(updated);
   } catch (error) {
@@ -83,13 +75,12 @@ export const updateVisitaController = async (
 };
 export const deleteVisitaController = async (
   req: Request<VisitaParams>,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
 
-    const visita =
-      await visitaService.getVisitaByIdService(id);
+    const visita = await visitaService.getVisitaByIdService(id);
 
     if (!visita) {
       return res.status(404).json({
