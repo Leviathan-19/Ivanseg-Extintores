@@ -1,17 +1,10 @@
 import { Routes } from '@angular/router';
-export const routes: Routes = [
 
+export const routes: Routes = [
   {
     path: 'visitas',
-    loadChildren: () =>
-      import('./modules/visitas/visitas-module')
-        .then(m => m.VisitasModule)
-  },
-
-  {
-    path: '',
-    redirectTo: 'visitas',
-    pathMatch: 'full'
+    loadComponent: () =>
+      import('./modules/visitas/pages/main-visita/main-visita')
+        .then(m => m.MainVisita)
   }
-
 ];

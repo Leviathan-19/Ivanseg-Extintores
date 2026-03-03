@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UbicacionService } from '../../../../core/services/ubicacion';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../../../../core/services/api.service';
 
 @Component({
   selector: 'app-main-visita',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './main-visita.html',
-  styleUrls: ['./main-visita.css']
 })
 export class MainVisita implements OnInit {
-
-  form!: FormGroup;
+  form: FormGroup;
 
   provincias: any[] = [];
   cantones: any[] = [];
@@ -18,62 +20,60 @@ export class MainVisita implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ubicacionService: UbicacionService
-  ) {}
-
-  ngOnInit(): void {
+    private api: ApiService,
+  ) {
     this.form = this.fb.group({
       provinciaId: [''],
       cantonId: [''],
       parroquiaId: [''],
-      barrioId: ['']
+      barrioId: [''],
     });
+  }
 
+  ngOnInit() {
     this.cargarProvincias();
   }
 
   cargarProvincias() {
-    this.ubicacionService.getProvincias()
-      .subscribe((data: any) => {
-        this.provincias = data;
-      });
+    this.api.getProvincias().subscribe((data) => {
+      this.provincias = data;
+    });
   }
 
   onProvinciaChange() {
-    const provinciaId = this.form.value.provinciaId;
-    this.ubicacionService.getCantonesByProvincia(provinciaId)
-      .subscribe((data: any) => {
-        this.cantones = data;
-        this.parroquias = [];
-        this.barrios = [];
-      });
+    const provinciaId = this.form.get('provincia')?.value;
+
+    this.api.getCantones(provinciaId).subscribe((data) => {
+      this.cantones = data;
+      this.parroquias = [];
+      this.barrios = [];
+    });
   }
 
   onCantonChange() {
-    const cantonId = this.form.value.cantonId;
-    this.ubicacionService.getParroquiasByCanton(cantonId)
-      .subscribe((data: any) => {
-        this.parroquias = data;
-        this.barrios = [];
-      });
+    const cantonId = this.form.get('canton')?.value;
+
+    this.api.getParroquias(cantonId).subscribe((data) => {
+      this.parroquias = data;
+      this.barrios = [];
+    });
   }
 
   onParroquiaChange() {
-    const parroquiaId = this.form.value.parroquiaId;
-    this.ubicacionService.getBarriosByParroquia(parroquiaId)
-      .subscribe((data: any) => {
-        this.barrios = data;
-      });
+    const parroquiaId = this.form.get('parroquia')?.value;
+
+    this.api.getBarrios(parroquiaId).subscribe((data) => {
+      this.barrios = data;
+    });
   }
 
   crearVisita() {
-    const data = {
-      barrioId: this.form.value.barrioId
-    };
+    if (this.form.invalid) return;
 
-    this.ubicacionService.crearVisita(data)
-      .subscribe(() => {
-        alert('Visita creada correctamente');
-      });
+    this.api.crearVisita(this.form.value).subscribe((response) => {
+      console.log('Visita creada:', response);
+      alert('Visita creada correctamente');
+      this.form.reset();
+    });
   }
 }

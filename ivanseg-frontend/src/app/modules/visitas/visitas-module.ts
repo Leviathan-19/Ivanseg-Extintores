@@ -8,13 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    MainVisita
-  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MainVisita,              // 👈 AQUÍ
     RouterModule.forChild(routes)
   ]
 })
