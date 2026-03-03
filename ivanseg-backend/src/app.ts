@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import clienteRoutes from "./routes/cliente.routes";
 import clienteEstablecimientoRoutes from "./routes/clienteEstablecimiento.routes";
@@ -15,9 +17,13 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://ivanseg-extintores-9beq.onrender.com/',
+  origin: process.env.FRONTEND_URL || 'http://localhost:4200',
   credentials: true
 }));
+
+app.get('/', (req, res) => {
+  res.send('Backend funcionando correctamente!');
+});
 
 app.use("/api/clientes", clienteRoutes);
 app.use("/api/clientes-establecimientos", clienteEstablecimientoRoutes);
