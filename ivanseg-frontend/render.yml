@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: ivanseg-frontend
+    env: node
+    plan: free
+    root: .
+    buildCommand: npm install && npm run build
+    publishPath: dist/src
+    routes:
+      - path: /*
+        rewrite: /index.html
