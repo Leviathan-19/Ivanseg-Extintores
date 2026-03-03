@@ -23,11 +23,26 @@ export class MainVisita implements OnInit {
     private api: ApiService,
   ) {
     this.form = this.fb.group({
-      provinciaId: [''],
-      cantonId: [''],
-      parroquiaId: [''],
-      barrioId: [''],
-    });
+  provinciaId: [''],
+  cantonId: [''],
+  parroquiaId: [''],
+  barrioId: [''],
+
+  razonSocial: [''],
+  nombreCliente: [''],
+  telefono: [''],
+  correo: [''],
+
+  callePrincipal: [''],
+  calleSecundaria: [''],
+  numeracion: [''],
+
+  latitud: [null],
+  longitud: [null],
+
+  estadoVisita: [''],
+  proximaVisita: ['']
+});
   }
   ngOnInit() {
     this.api.getProvincias().subscribe((data) => {
@@ -77,18 +92,58 @@ export class MainVisita implements OnInit {
       });
     });
   }
-  crearVisita() {
-    console.log("FORM VALUE:", this.form.value);
-    if (this.form.invalid) return;
+  cargandoUbicacion = false;
+  obtenerUbicacion() {
 
-    this.api.crearVisita(this.form.value).subscribe((response) => {
+  this.cargandoUbicacion = true;
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+
+      this.form.patchValue({
+        latitud: position.coords.latitude,
+        longitud: position.coords.longitude
+      });
+
+      this.cargandoUbicacion = false;
+
+    },
+    (error) => {
+      console.error(error);
+      this.cargandoUbicacion = false;
+    }
+  );
+}
+  crearVisita() {
+
+  const formValue = this.form.value;
+
+  const payload = {
+    barrioId: formValue.barrioId,
+    nombreCliente: formValue.nombreCliente,
+    razonSocial: formValue.razonSocial,
+    telefono: formValue.telefono,
+    correo: formValue.correo,
+    callePrincipal: formValue.callePrincipal,
+    calleSecundaria: formValue.calleSecundaria,
+    numeracion: formValue.numeracion,
+    latitud: formValue.latitud ? Number(formValue.latitud) : undefined,
+    longitud: formValue.longitud ? Number(formValue.longitud) : undefined,
+    estadoVisita: formValue.estadoVisita,
+    proximaVisita: formValue.proximaVisita
+  };
+
+  console.log("PAYLOAD LIMPIO:", payload);
+
+  this.api.crearVisita(payload).subscribe({
+    next: (response) => {
       console.log('Visita creada:', response);
       alert('Visita creada correctamente');
       this.form.reset();
     },
-    (error) => {
-      console.error('Error al crear visita:', error);
-      alert('Error al crear visita');
-    });
-  }
+    error: (error) => {
+      console.error("Error backend:", error.error);
+    }
+  });
+}
 }

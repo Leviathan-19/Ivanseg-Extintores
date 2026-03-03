@@ -43,6 +43,39 @@
                 </option>
             </select>
         </div>
+        <div class="mb-3">
+            <label>Razón Social</label>
+            <input type="text" formControlName="razonSocial" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Calle Principal</label>
+            <input type="text" formControlName="callePrincipal" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Próxima Visita</label>
+            <input type="date" formControlName="proximaVisita" class="form-control">
+        </div>
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" (click)="obtenerUbicacion()" [disabled]="cargandoUbicacion">
+
+                {{ cargandoUbicacion ? 'Obteniendo ubicación...' : '📍 Dar ubicación' }}
+
+            </button>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                <label>Latitud</label>
+                <input type="text" formControlName="latitud" class="form-control" readonly>
+            </div>
+
+            <div class="col">
+                <label>Longitud</label>
+                <input type="text" formControlName="longitud" class="form-control" readonly>
+            </div>
+        </div>
 
         <button type="button" class="btn btn-primary" (click)="crearVisita()" [disabled]="!form.value.barrioId">
             Añadir Visita
