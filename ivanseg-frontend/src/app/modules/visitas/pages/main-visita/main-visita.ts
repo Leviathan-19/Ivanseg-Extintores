@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../../../../core/services/api.service';
-
+import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-main-visita',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './main-visita.html',
+  styleUrls: ['./main-visita.css']
 })
 export class MainVisita implements OnInit {
   form: FormGroup;
@@ -23,26 +24,28 @@ export class MainVisita implements OnInit {
     private api: ApiService,
   ) {
     this.form = this.fb.group({
-  provinciaId: [''],
-  cantonId: [''],
-  parroquiaId: [''],
-  barrioId: [''],
+      provinciaId: [''],
+      cantonId: [''],
+      parroquiaId: [''],
 
-  razonSocial: [''],
-  nombreCliente: [''],
-  telefono: [''],
-  correo: [''],
+      barrioId: ['', Validators.required],
 
-  callePrincipal: [''],
-  calleSecundaria: [''],
-  numeracion: [''],
+      razonSocial: ['', [Validators.required, Validators.minLength(2)]],
+      nombreCliente: [''],
 
-  latitud: [null],
-  longitud: [null],
+      telefono: [''],
+      correo: ['', Validators.email],
 
-  estadoVisita: [''],
-  proximaVisita: ['']
-});
+      callePrincipal: ['', Validators.required],
+      calleSecundaria: [''],
+      numeracion: [''],
+
+      latitud: [null],
+      longitud: [null],
+
+      estadoVisita: [''],
+      proximaVisita: ['', Validators.required],
+    });
   }
   ngOnInit() {
     this.api.getProvincias().subscribe((data) => {
@@ -94,56 +97,60 @@ export class MainVisita implements OnInit {
   }
   cargandoUbicacion = false;
   obtenerUbicacion() {
+    this.cargandoUbicacion = true;
 
-  this.cargandoUbicacion = true;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.form.patchValue({
+          latitud: position.coords.latitude,
+          longitud: position.coords.longitude,
+        });
 
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-
-      this.form.patchValue({
-        latitud: position.coords.latitude,
-        longitud: position.coords.longitude
-      });
-
-      this.cargandoUbicacion = false;
-
-    },
-    (error) => {
-      console.error(error);
-      this.cargandoUbicacion = false;
-    }
-  );
-}
+        this.cargandoUbicacion = false;
+      },
+      (error) => {
+        console.error(error);
+        this.cargandoUbicacion = false;
+      },
+    );
+  }
   crearVisita() {
-
-  const formValue = this.form.value;
-
-  const payload = {
-    barrioId: formValue.barrioId,
-    nombreCliente: formValue.nombreCliente,
-    razonSocial: formValue.razonSocial,
-    telefono: formValue.telefono,
-    correo: formValue.correo,
-    callePrincipal: formValue.callePrincipal,
-    calleSecundaria: formValue.calleSecundaria,
-    numeracion: formValue.numeracion,
-    latitud: formValue.latitud ? Number(formValue.latitud) : undefined,
-    longitud: formValue.longitud ? Number(formValue.longitud) : undefined,
-    estadoVisita: formValue.estadoVisita,
-    proximaVisita: formValue.proximaVisita
-  };
-
-  console.log("PAYLOAD LIMPIO:", payload);
-
-  this.api.crearVisita(payload).subscribe({
-    next: (response) => {
-      console.log('Visita creada:', response);
-      alert('Visita creada correctamente');
-      this.form.reset();
-    },
-    error: (error) => {
-      console.error("Error backend:", error.error);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
-  });
-}
+
+    const formValue = this.form.value;
+
+    const toNull = (valor: any) => (valor === '' || valor === undefined ? null : valor);
+
+    const payload = {
+      barrioId: formValue.barrioId,
+      razonSocial: formValue.razonSocial,
+      callePrincipal: formValue.callePrincipal,
+      proximaVisita: formValue.proximaVisita,
+
+      nombreCliente: toNull(formValue.nombreCliente),
+      telefono: toNull(formValue.telefono),
+      correo: toNull(formValue.correo),
+      calleSecundaria: toNull(formValue.calleSecundaria),
+      numeracion: toNull(formValue.numeracion),
+      estadoVisita: toNull(formValue.estadoVisita),
+
+      latitud: formValue.latitud ?? null,
+      longitud: formValue.longitud ?? null,
+    };
+
+    console.log('PAYLOAD FINAL:', payload);
+
+    this.api.crearVisita(payload).subscribe({
+      next: () => {
+        alert('Visita creada correctamente');
+        this.form.reset();
+      },
+      error: (error) => {
+        console.error('Error backend:', error.error);
+      },
+    });
+  }
 }

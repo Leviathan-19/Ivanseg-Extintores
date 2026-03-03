@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <h2>Crear Visita</h2>
+    <h2>Añadir Visita</h2>
 
     <form [formGroup]="form">
 
@@ -44,18 +44,56 @@
             </select>
         </div>
         <div class="mb-3">
-            <label>Razón Social</label>
+            <label>Razón Social <span class="text-danger"></span></label>
             <input type="text" formControlName="razonSocial" class="form-control">
         </div>
-
         <div class="mb-3">
-            <label>Calle Principal</label>
-            <input type="text" formControlName="callePrincipal" class="form-control">
+            <label>Nombre del Cliente</label>
+            <input type="text" formControlName="nombreCliente" class="form-control">
+            <small class="text-muted">no obligatorio</small>
         </div>
 
         <div class="mb-3">
-            <label>Próxima Visita</label>
+            <label>Teléfono</label>
+            <input type="tel" formControlName="telefono" class="form-control">
+            <small class="text-muted">no obligatorio</small>
+        </div>
+
+        <div class="mb-3">
+            <label>Correo Electrónico</label>
+            <input type="email" formControlName="correo" class="form-control">
+            <small class="text-muted">no obligatorio</small>
+            <div *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched" class="text-danger">
+                Ingrese un correo válido
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Calle Principal <span class="text-danger"></span></label>
+            <input type="text" formControlName="callePrincipal" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Calle Secundaria</label>
+            <input type="text" formControlName="calleSecundaria" class="form-control">
+            <small class="text-muted">no obligatorio</small>
+        </div>
+        <div class="mb-3">
+            <label>Numeración</label>
+            <input type="text" formControlName="numeracion" class="form-control">
+            <small class="text-muted">no obligatorio</small>
+        </div>
+        <div class="mb-3">
+            <label>Próxima Visita <span class="text-danger"></span></label>
             <input type="date" formControlName="proximaVisita" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Estado de la Visita <span class="text-danger"></span></label>
+            <select class="form-control" formControlName="estadoVisita">
+                <option value="">Seleccione un estado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="completada">Completada</option>
+                <option value="cancelada">Cancelada</option>
+            </select>
         </div>
         <div class="mb-3">
             <button type="button" class="btn btn-primary" (click)="obtenerUbicacion()" [disabled]="cargandoUbicacion">
@@ -67,18 +105,19 @@
 
         <div class="row mt-3">
             <div class="col">
-                <label>Latitud</label>
+                <label>Latitud <span class="text-danger"></span></label>
                 <input type="text" formControlName="latitud" class="form-control" readonly>
             </div>
 
             <div class="col">
-                <label>Longitud</label>
+                <label>Longitud <span class="text-danger"></span></label>
                 <input type="text" formControlName="longitud" class="form-control" readonly>
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary" (click)="crearVisita()" [disabled]="!form.value.barrioId">
-            Añadir Visita
+        <button type="button" class="btn btn-success" (click)="crearVisita()" [disabled]="form.invalid">
+
+            Guardar Visita
         </button>
 
     </form>

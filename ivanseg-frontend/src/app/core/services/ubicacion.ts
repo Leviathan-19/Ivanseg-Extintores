@@ -8,27 +8,22 @@ export class UbicacionService {
 
   constructor(private api: ApiService) {}
 
-  // 🔹 PROVINCIAS
   getProvincias() {
     return this.api.get('provincias');
   }
 
-  // 🔹 CANTONES POR PROVINCIA
   getCantonesByProvincia(provinciaId: string) {
     return this.api.get(`cantones/provincia/${provinciaId}`);
   }
 
-  // 🔹 PARROQUIAS POR CANTON
   getParroquiasByCanton(cantonId: string) {
     return this.api.get(`parroquias/canton/${cantonId}`);
   }
 
-  // 🔹 BARRIOS POR PARROQUIA
   getBarriosByParroquia(parroquiaId: string) {
     return this.api.get(`barrios/parroquia/${parroquiaId}`);
   }
 
-  // 🔹 VISITAS
   crearVisita(data: any) {
     return this.api.post('visitas', data);
   }
