@@ -1,6 +1,6 @@
-// environments/environment.ts (desarrollo)
+// environments/environment.prod.ts (producción)
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: 'https://ivanseg-extintores.onrender.com',
   baseUrl: 'https://ivanseg-extintores.onrender.com/'
 };
