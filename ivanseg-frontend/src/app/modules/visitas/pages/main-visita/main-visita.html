@@ -1,61 +1,52 @@
 <div class="container mt-5">
-  <h2>Crear Visita</h2>
+    <h2>Crear Visita</h2>
 
-  <form [formGroup]="form">
+    <form [formGroup]="form">
 
-    <div class="mb-3">
-      <label>Provincia</label>
-      <select class="form-control"
-              formControlName="provinciaId"
-              (change)="onProvinciaChange()">
-        <option value="">Seleccione</option>
-        <option *ngFor="let p of provincias" [value]="p.id">
-          {{ p.nombre }}
-        </option>
-      </select>
-    </div>
+        <div class="mb-3">
+            <label>Provincia</label>
+            <select formControlName="provinciaId">
+                <option value="">Seleccionar
+                </option>
+                <option *ngFor="let p of provincias" [value]="p.id">
+                    {{ p.nombre }}
+                </option>
+            </select>
+        </div>
 
-    <div class="mb-3">
-      <label>Cantón</label>
-      <select class="form-control"
-              formControlName="cantonId"
-              (change)="onCantonChange()">
-        <option value="">Seleccione</option>
-        <option *ngFor="let c of cantones" [value]="c.id">
-          {{ c.nombre }}
-        </option>
-      </select>
-    </div>
+        <div class="mb-3">
+            <label>Cantón</label>
+            <select formControlName="cantonId">
+                <option value="">Seleccione</option>
+                <option *ngFor="let c of cantones" [value]="c.id">
+                    {{ c.nombre }}
+                </option>
+            </select>
+        </div>
 
-    <div class="mb-3">
-      <label>Parroquia</label>
-      <select class="form-control"
-              formControlName="parroquiaId"
-              (change)="onParroquiaChange()">
-        <option value="">Seleccione</option>
-        <option *ngFor="let p of parroquias" [value]="p.id">
-          {{ p.nombre }}
-        </option>
-      </select>
-    </div>
+        <div class="mb-3">
+            <label>Parroquia</label>
+            <select class="form-control" formControlName="parroquiaId">
+                <option value="">Seleccione</option>
+                <option *ngFor="let p of parroquias" [value]="p.id">
+                    {{ p.nombre }}
+                </option>
+            </select>
+        </div>
 
-    <div class="mb-3">
-      <label>Barrio</label>
-      <select class="form-control"
-              formControlName="barrioId">
-        <option value="">Seleccione</option>
-        <option *ngFor="let b of barrios" [value]="b.id">
-          {{ b.nombre }}
-        </option>
-      </select>
-    </div>
+        <div class="mb-3">
+            <label>Barrio</label>
+            <select class="form-control" formControlName="barrioId">
+                <option value="">Seleccione</option>
+                <option *ngFor="let b of barrios" [value]="b.id">
+                    {{ b.nombre }}
+                </option>
+            </select>
+        </div>
 
-    <button type="button"
-            class="btn btn-primary"
-            (click)="crearVisita()"
-            [disabled]="!form.value.barrioId">
-      Añadir Visita
-    </button>
+        <button type="button" class="btn btn-primary" (click)="crearVisita()" [disabled]="!form.value.barrioId">
+            Añadir Visita
+        </button>
 
-  </form>
+    </form>
 </div>

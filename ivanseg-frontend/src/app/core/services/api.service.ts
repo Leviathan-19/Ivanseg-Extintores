@@ -15,16 +15,22 @@ export class ApiService {
     return this.http.get<any[]>(`${this.baseUrl}/provincias`);
   }
 
-  getCantones(provinciaId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/cantones/${provinciaId}`);
+  getCantones(provinciaId: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.baseUrl}/cantones?provinciaId=${provinciaId}`
+    );
   }
 
-  getParroquias(cantonId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/parroquias/${cantonId}`);
+  getParroquias(cantonId: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.baseUrl}/parroquias?cantonId=${cantonId}`
+    );
   }
 
-  getBarrios(parroquiaId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/barrios/${parroquiaId}`);
+  getBarrios(parroquiaId: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.baseUrl}/barrios?parroquiaId=${parroquiaId}`
+    );
   }
 
   crearVisita(data: any): Observable<any> {
