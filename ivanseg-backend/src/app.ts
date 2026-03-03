@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import cors from "cors";
 import clienteRoutes from "./routes/cliente.routes";
 import clienteEstablecimientoRoutes from "./routes/clienteEstablecimiento.routes";
 import mantenimientoRoutes from "./routes/mantenimiento.routes";
@@ -11,11 +12,10 @@ import parroquiaRoutes from "./routes/parroquia.route";
 import barrioRoutes from "./routes/barrio.route";
 import visitaRoutes from "./routes/visita.route";
 import { errorHandler } from "./middlewares/error.middleware";
-import cors from 'cors';
+
 const app = express();
 
 app.use(express.json());
-
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:4200',
   credentials: true
@@ -29,12 +29,12 @@ app.use("/api/clientes", clienteRoutes);
 app.use("/api/clientes-establecimientos", clienteEstablecimientoRoutes);
 app.use("/api/mantenimientos", mantenimientoRoutes);
 app.use("/api/establecimientos", establecimientoRoutes);
-
 app.use("/api/provincias", provinciaRoutes);
 app.use("/api/cantones", cantonRoutes);
 app.use("/api/parroquias", parroquiaRoutes);
 app.use("/api/barrios", barrioRoutes);
 app.use("/api/visitas", visitaRoutes);
+
 app.use(errorHandler);
 
 export default app;
