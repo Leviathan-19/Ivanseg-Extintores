@@ -12,7 +12,8 @@ import parroquiaRoutes from "./routes/parroquia.route";
 import barrioRoutes from "./routes/barrio.route";
 import visitaRoutes from "./routes/visita.route";
 import { errorHandler } from "./middlewares/error.middleware";
-
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
@@ -20,6 +21,17 @@ app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:4200',
   credentials: true
 }));
+
+async function testConnection() {
+  try {
+    await prisma.$connect();
+    console.log("✅ Prisma conectado correctamente");
+  } catch (err) {
+    console.error("❌ Error conectando Prisma:", err);
+  }
+}
+
+testConnection();
 
 app.get('/', (req, res) => {
   res.send('Backend funcionando correctamente!');
