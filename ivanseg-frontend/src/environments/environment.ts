@@ -1,6 +1,5 @@
-// environments/environment.ts (desarrollo)
 export const environment = {
   production: false,
-  apiUrl: 'https://ivanseg-extintores.onrender.com',
-  baseUrl: 'https://ivanseg-extintores.onrender.com/'
+  apiUrl: 'http://localhost:3000', // O tu backend local
+  baseUrl: 'http://localhost:3000/'
 };
