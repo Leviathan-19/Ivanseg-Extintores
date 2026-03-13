@@ -1,0 +1,34 @@
+https://developer.android.com/studio
+
+https://docs.flutter.dev/install/quick
+---------------------------
+https://flutter.dev/
+
+flutter doctor
+-------------install extension visual-------------
+Flutter: https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+Dart
+---------------------------------------------------------------
+1.- Launch VS Code
+If not already open, open VS Code by searching for it with Spotlight or opening it manually from the directory where it's installed.
+
+2.- Add the Flutter extension to VS Code
+To add the Dart and Flutter extensions to VS Code, visit the Flutter extension's marketplace page, then click Install. If prompted by your browser, allow it to open VS Code.
+
+3.- Install Flutter with VS Code
+Open the command palette in VS Code.
+
+Go to View > ***Command Palette*** or press Control + Shift + P.
+
+In the command palette, type flutter.
+
+Select Flutter: New Project.
+
+VS Code prompts you to locate the Flutter SDK on your computer. Select Download SDK.
+
+When the Select Folder for Flutter SDK dialog displays, choose where you want to install Flutter.
+
+Click Clone Flutter.
+--------------------------------------------------------------------
+cd ivanseg-app
+flutter create ivanseg-app

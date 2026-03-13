@@ -156,6 +156,7 @@ model Visita {
   numeracion      String?
   latitud         Float?
   longitud        Float?
+  fotoUrl         String?   @map("foto_url")
   estadoVisita    String?    @default("pendiente") @map("estado_visita")
   proximaVisita   DateTime  @map("proxima_visita") @db.Date
   fechaVisita     DateTime  @default(now()) @map("fecha_visita")
