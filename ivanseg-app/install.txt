@@ -32,3 +32,15 @@ Click Clone Flutter.
 --------------------------------------------------------------------
 cd ivanseg-app
 flutter create ivanseg-app
+
+
+---------------------------cmd ----------------
+flutter doctor
+flutter doctor --android-licenses
+--------------------android studio----------------
+More Actions
+→ SDK Manager
+SDK Tools:
+✅ Android SDK Command-line Tools (latest)
+✅ Android SDK Platform Tools
+✅ Android SDK Build Tools

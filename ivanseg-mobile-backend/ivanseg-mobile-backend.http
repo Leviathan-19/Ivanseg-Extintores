@@ -1,0 +1,6 @@
+@ivanseg_mobile_backend_HostAddress = http://localhost:5006
+
+GET {{ivanseg_mobile_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
