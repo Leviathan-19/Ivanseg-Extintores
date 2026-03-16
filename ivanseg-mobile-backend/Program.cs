@@ -68,6 +68,17 @@ var app = builder.Build();
 // }
 
 //------------------------------------------------------------------------------------------------------------
+builder
+    .Services.AddControllers()
+    .AddJsonOptions(x =>
+        x.JsonSerializerOptions.ReferenceHandler = System
+            .Text
+            .Json
+            .Serialization
+            .ReferenceHandler
+            .IgnoreCycles
+    );
+
 app.MapGet(
     "/health",
     async (AppDbContext db) =>
