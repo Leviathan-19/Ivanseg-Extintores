@@ -8,3 +8,5 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 flutter pub add sqflite
 flutter pub add path
 flutter pub add connectivity_plus
+
+----------------------------------
