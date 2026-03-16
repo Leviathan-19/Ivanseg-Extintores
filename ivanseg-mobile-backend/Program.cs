@@ -1,5 +1,7 @@
 using DotNetEnv;
 using ivanseg_mobile_backend.Data;
+using ivanseg_mobile_backend.Models;
+using ivanseg_mobile_backend.Services;
 using Microsoft.EntityFrameworkCore;
 
 Env.Load();
@@ -78,6 +80,9 @@ builder
             .ReferenceHandler
             .IgnoreCycles
     );
+
+builder.Services.AddScoped<VisitaService>();
+builder.Services.AddScoped<UbicacionService>();
 
 app.MapGet(
     "/health",
