@@ -53,13 +53,11 @@ SDK Tools:
 - activa la opcion:
 Developer Mode (Modo de desarrollador)
 
-- reiniciar terminal cmd:
+- terminal ivanseg\ivanseg_mobile_app
 flutter clean
 flutter pub get
 ---------------ivanseg_mobile_app----
 flutter pub add sqflite
 flutter pub add path
-
-
 flutter pub add connectivity_plus
 ----------------------------------
