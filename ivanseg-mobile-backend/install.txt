@@ -1,5 +1,11 @@
 EF dependencies install:
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
-dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.AspNetCore.OpenApi --version 8.0.21
+dotnet add package Microsoft.EntityFrameworkCore --version 8.0.7
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.7
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 8.0.7
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 8.0.4
+dotnet add package Swashbuckle.AspNetCore --version 10.1.5
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 8.0.7
+dotnet add package DotNetEnv --version 3.1.1
+
+dotnet restore
