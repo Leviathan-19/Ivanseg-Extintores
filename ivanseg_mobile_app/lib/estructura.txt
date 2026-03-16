@@ -1,0 +1,17 @@
+lib
+│
+├── database
+│   └── database_service.dart
+│
+├── models
+│   └── visita_model.dart
+│
+├── services
+│   ├── visita_service.dart
+│   └── sync_service.dart
+│
+├── screens
+│   ├── visitas_screen.dart
+│   └── crear_visita_screen.dart
+│
+└── main.dart
