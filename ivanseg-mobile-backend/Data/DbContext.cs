@@ -17,5 +17,20 @@ namespace ivanseg_mobile_backend.Data
         public DbSet<Barrio> Barrios { get; set; }
 
         public DbSet<Visita> Visitas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Provincia>().ToTable("provincias");
+
+            modelBuilder.Entity<Canton>().ToTable("cantones");
+
+            modelBuilder.Entity<Parroquia>().ToTable("parroquias");
+
+            modelBuilder.Entity<Barrio>().ToTable("barrios");
+
+            modelBuilder.Entity<Visita>().ToTable("visitas");
+        }
     }
 }

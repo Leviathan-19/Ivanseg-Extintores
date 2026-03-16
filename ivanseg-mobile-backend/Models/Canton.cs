@@ -8,7 +8,6 @@ namespace ivanseg_mobile_backend.Models
 
         public string ProvinciaId { get; set; } = string.Empty;
 
-        // Relaciones
         public Provincia? Provincia { get; set; }
 
         public ICollection<Parroquia>? Parroquias { get; set; }

@@ -6,7 +6,6 @@ namespace ivanseg_mobile_backend.Models
 
         public string Nombre { get; set; } = string.Empty;
 
-        // Relaciones
         public ICollection<Canton>? Cantones { get; set; }
     }
 }

@@ -32,7 +32,6 @@ namespace ivanseg_mobile_backend.Models
 
         public string? FotoUrl { get; set; }
 
-        // Relación
         public Barrio? Barrio { get; set; }
     }
 }
