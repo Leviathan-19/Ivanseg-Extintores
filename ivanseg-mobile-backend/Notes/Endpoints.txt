@@ -1,0 +1,9 @@
+GET /api/provincias
+GET /api/cantones?provinciaId=
+GET /api/parroquias?cantonId=
+GET /api/barrios?parroquiaId=
+
+GET /api/visitas
+GET /api/visitas/{id}
+POST /api/visitas
+PUT /api/visitas/{id}
