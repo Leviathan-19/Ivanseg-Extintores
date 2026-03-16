@@ -1,0 +1,78 @@
+CREATE TABLE public.provincias (
+	id text NOT NULL,
+	nombre text NOT NULL,
+	CONSTRAINT provincias_pkey PRIMARY KEY (id)
+);
+CREATE UNIQUE INDEX provincias_nombre_key ON public.provincias USING btree (nombre);
+-------------------------------------------------------
+CREATE TABLE public.cantones (
+	id text NOT NULL,
+	nombre text NOT NULL,
+	provincia_id text NOT NULL,
+	CONSTRAINT cantones_pkey PRIMARY KEY (id)
+);
+CREATE UNIQUE INDEX cantones_nombre_provincia_id_key ON public.cantones USING btree (nombre, provincia_id);
+CREATE INDEX cantones_provincia_id_idx ON public.cantones USING btree (provincia_id);
+
+
+-- public.cantones foreign keys
+
+ALTER TABLE public.cantones ADD CONSTRAINT cantones_provincia_id_fkey FOREIGN KEY (provincia_id) REFERENCES public.provincias(id) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+----------------------------------------------
+CREATE TABLE public.parroquias (
+	id text NOT NULL,
+	nombre text NOT NULL,
+	canton_id text NOT NULL,
+	CONSTRAINT parroquias_pkey PRIMARY KEY (id)
+);
+CREATE INDEX parroquias_canton_id_idx ON public.parroquias USING btree (canton_id);
+CREATE UNIQUE INDEX parroquias_nombre_canton_id_key ON public.parroquias USING btree (nombre, canton_id);
+
+
+-- public.parroquias foreign keys
+
+ALTER TABLE public.parroquias ADD CONSTRAINT parroquias_canton_id_fkey FOREIGN KEY (canton_id) REFERENCES public.cantones(id) ON DELETE RESTRICT ON UPDATE CASCADE;
+---------------------------------------------------
+CREATE TABLE public.barrios (
+	id text NOT NULL,
+	nombre text NOT NULL,
+	parroquia_id text NOT NULL,
+	CONSTRAINT barrios_pkey PRIMARY KEY (id)
+);
+CREATE UNIQUE INDEX barrios_nombre_parroquia_id_key ON public.barrios USING btree (nombre, parroquia_id);
+CREATE INDEX barrios_parroquia_id_idx ON public.barrios USING btree (parroquia_id);
+
+
+-- public.barrios foreign keys
+
+ALTER TABLE public.barrios ADD CONSTRAINT barrios_parroquia_id_fkey FOREIGN KEY (parroquia_id) REFERENCES public.parroquias(id) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+---------------------------------------------
+CREATE TABLE public.visitas (
+	id text NOT NULL,
+	nombre_cliente text NULL,
+	razon_social text NOT NULL,
+	telefono text NULL,
+	correo text NULL,
+	estado_visita text DEFAULT 'pendiente'::text NULL,
+	proxima_visita date NOT NULL,
+	fecha_visita timestamp(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	barrio_id text NOT NULL,
+	calle_principal text NOT NULL,
+	calle_secundaria text NULL,
+	latitud float8 NULL,
+	longitud float8 NULL,
+	numeracion text NULL,
+	foto_url text NULL,
+	CONSTRAINT visitas_pkey PRIMARY KEY (id)
+);
+CREATE INDEX visitas_barrio_id_idx ON public.visitas USING btree (barrio_id);
+CREATE INDEX visitas_estado_visita_idx ON public.visitas USING btree (estado_visita);
+CREATE INDEX visitas_latitud_longitud_idx ON public.visitas USING btree (latitud, longitud);
+CREATE INDEX visitas_proxima_visita_idx ON public.visitas USING btree (proxima_visita);
+
+
+-- public.visitas foreign keys
+
+ALTER TABLE public.visitas ADD CONSTRAINT visitas_barrio_id_fkey FOREIGN KEY (barrio_id) REFERENCES public.barrios(id) ON DELETE RESTRICT ON UPDATE CASCADE;

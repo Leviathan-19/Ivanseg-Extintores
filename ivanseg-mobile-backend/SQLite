@@ -1,0 +1,54 @@
+CREATE TABLE provincias (
+  id TEXT PRIMARY KEY,
+  nombre TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE cantones (
+  id TEXT PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  provincia_id TEXT NOT NULL,
+  FOREIGN KEY (provincia_id) REFERENCES provincias(id)
+);
+
+CREATE UNIQUE INDEX cantones_nombre_provincia_id_key
+ON cantones(nombre, provincia_id);
+
+CREATE TABLE parroquias (
+  id TEXT PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  canton_id TEXT NOT NULL,
+  FOREIGN KEY (canton_id) REFERENCES cantones(id)
+);
+
+CREATE UNIQUE INDEX parroquias_nombre_canton_id_key
+ON parroquias(nombre, canton_id);
+
+CREATE TABLE barrios (
+  id TEXT PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  parroquia_id TEXT NOT NULL,
+  FOREIGN KEY (parroquia_id) REFERENCES parroquias(id)
+);
+
+CREATE UNIQUE INDEX barrios_nombre_parroquia_id_key
+ON barrios(nombre, parroquia_id);
+
+CREATE TABLE visitas (
+  id TEXT PRIMARY KEY,
+  nombre_cliente TEXT,
+  razon_social TEXT NOT NULL,
+  telefono TEXT,
+  correo TEXT,
+  estado_visita TEXT DEFAULT 'pendiente',
+  proxima_visita TEXT NOT NULL,
+  fecha_visita TEXT DEFAULT CURRENT_TIMESTAMP,
+  barrio_id TEXT NOT NULL,
+  calle_principal TEXT NOT NULL,
+  calle_secundaria TEXT,
+  latitud REAL,
+  longitud REAL,
+  numeracion TEXT,
+  foto_url TEXT,
+  sincronizado INTEGER DEFAULT 0,
+  FOREIGN KEY (barrio_id) REFERENCES barrios(id)
+);

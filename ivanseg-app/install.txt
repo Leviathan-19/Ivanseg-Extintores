@@ -36,7 +36,9 @@ flutter create ivanseg-app
 
 ---------------------------cmd ----------------
 flutter doctor
-flutter doctor --android-licenses
+flutter doctor --android-licenses (Y 6 veces)
+Accept? (y/N): y
+All SDK package licenses accepted
 --------------------android studio----------------
 More Actions
 → SDK Manager
