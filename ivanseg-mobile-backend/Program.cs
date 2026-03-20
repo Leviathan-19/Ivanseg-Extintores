@@ -43,9 +43,20 @@ builder
 builder.Services.AddScoped<VisitaService>();
 builder.Services.AddScoped<UbicacionService>();
 
+//-----------------------
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowAll",
+        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+    );
+});
+builder.WebHost.UseUrls("http://0.0.0.0:10000");
+
 //------------------ Build ------------------
 
 var app = builder.Build();
+app.UseCors("AllowAll");
 
 //------------------ Endpoint health ------------------
 
