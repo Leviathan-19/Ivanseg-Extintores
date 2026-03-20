@@ -20,17 +20,48 @@ namespace ivanseg_mobile_backend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Provincia>(entity =>
+            {
+                entity.ToTable("provincias");
 
-            modelBuilder.Entity<Provincia>().ToTable("provincias");
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+            });
 
-            modelBuilder.Entity<Canton>().ToTable("cantones");
+            modelBuilder.Entity<Canton>(entity =>
+            {
+                entity.ToTable("cantones");
 
-            modelBuilder.Entity<Parroquia>().ToTable("parroquias");
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+                entity.Property(e => e.ProvinciaId).HasColumnName("provincia_id");
+            });
 
-            modelBuilder.Entity<Barrio>().ToTable("barrios");
+            modelBuilder.Entity<Parroquia>(entity =>
+            {
+                entity.ToTable("parroquias");
 
-            modelBuilder.Entity<Visita>().ToTable("visitas");
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+                entity.Property(e => e.CantonId).HasColumnName("canton_id");
+            });
+
+            modelBuilder.Entity<Barrio>(entity =>
+            {
+                entity.ToTable("barrios");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+                entity.Property(e => e.ParroquiaId).HasColumnName("parroquia_id");
+            });
+
+            modelBuilder.Entity<Visita>(entity =>
+            {
+                entity.ToTable("visitas");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.BarrioId).HasColumnName("barrio_id");
+            });
         }
     }
 }
