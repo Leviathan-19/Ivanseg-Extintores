@@ -63,4 +63,9 @@ flutter pub add connectivity_plus
 flutter pub add hive_flutter
 flutter pub add hive
 flutter pub add uuid
+flutter pub add http
+flutter pub add flutter_dotenv
+
+
+flutter pub get
 ----------------------------------
