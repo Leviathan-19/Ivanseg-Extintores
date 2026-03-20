@@ -52,5 +52,11 @@ namespace ivanseg_mobile_backend.Models
         public string? FotoUrl { get; set; }
 
         public Barrio? Barrio { get; set; }
+
+        [Column("dispositivo_id")]
+        public string? DispositivoId { get; set; } //identificador de dispositivo movil
+
+        [Column("visita_offline_id")]
+        public string? VisitaOfflineId { get; set; } // id generado con flutter
     }
 }

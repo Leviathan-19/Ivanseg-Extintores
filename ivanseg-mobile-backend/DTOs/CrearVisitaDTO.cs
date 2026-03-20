@@ -14,5 +14,7 @@ namespace ivanseg_mobile_backend.DTOs
         public double? Longitud { get; set; }
         public string? Numeracion { get; set; }
         public string? FotoUrl { get; set; }
+        public string? DispositivoId { get; set; }
+        public string? VisitaOfflineId { get; set; }
     }
 }
