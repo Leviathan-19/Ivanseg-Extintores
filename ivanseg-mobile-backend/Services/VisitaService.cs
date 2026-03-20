@@ -41,6 +41,7 @@ namespace ivanseg_mobile_backend.Services
                 CalleSecundaria = dto.CalleSecundaria,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
+                FotoUrl = dto.FotoUrl,
             };
 
             _context.Visitas.Add(visita);

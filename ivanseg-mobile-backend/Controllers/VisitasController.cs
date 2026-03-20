@@ -24,5 +24,12 @@ namespace ivanseg_mobile_backend.Controllers
             var visitas = await _service.ObtenerVisitas();
             return Ok(visitas);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CrearVisita([FromBody] CrearVisitaDTO dto)
+        {
+            var visita = await _service.CrearVisita(dto);
+            return Ok(visita);
+        }
     }
 }
