@@ -57,14 +57,29 @@ namespace ivanseg_mobile_backend.Services
 
         public async Task<Visita> CrearVisita(CrearVisitaDTO dto)
         {
+            if (string.IsNullOrEmpty(dto.VisitaOfflineId))
+            {
+                throw new Exception("VisitaOfflineId es requerido");
+            }
+            var existente = await _context.Visitas.FirstOrDefaultAsync(v =>
+                v.VisitaOfflineId == dto.VisitaOfflineId
+            );
+
+            if (existente != null)
+            {
+                return existente;
+            }
+
             var visita = new Visita
             {
                 Id = Guid.NewGuid().ToString(),
+
                 NombreCliente = dto.NombreCliente,
                 RazonSocial = dto.RazonSocial,
                 Telefono = dto.Telefono,
                 Correo = dto.Correo,
                 ProximaVisita = dto.ProximaVisita,
+
                 BarrioId = dto.BarrioId,
                 CallePrincipal = dto.CallePrincipal,
                 CalleSecundaria = dto.CalleSecundaria,
@@ -72,10 +87,11 @@ namespace ivanseg_mobile_backend.Services
                 Longitud = dto.Longitud,
                 Numeracion = dto.Numeracion,
                 FotoUrl = dto.FotoUrl,
+                DispositivoId = dto.DispositivoId,
+                VisitaOfflineId = dto.VisitaOfflineId,
             };
 
             _context.Visitas.Add(visita);
-
             await _context.SaveChangesAsync();
 
             return visita;
