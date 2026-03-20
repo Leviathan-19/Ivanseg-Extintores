@@ -10,6 +10,6 @@ namespace ivanseg_mobile_backend.Models
 
         public Provincia? Provincia { get; set; }
 
-        public ICollection<Parroquia>? Parroquias { get; set; }
+        public ICollection<Parroquia> Parroquias { get; set; } = new List<Parroquia>();
     }
 }

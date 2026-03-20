@@ -10,6 +10,6 @@ namespace ivanseg_mobile_backend.Models
 
         public Canton? Canton { get; set; }
 
-        public ICollection<Barrio>? Barrios { get; set; }
+        public ICollection<Barrio> Barrios { get; set; } = new List<Barrio>();
     }
 }
