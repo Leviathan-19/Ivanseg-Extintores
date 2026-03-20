@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ivanseg_mobile_backend.Models
 {
     public class Visita
@@ -31,7 +34,7 @@ namespace ivanseg_mobile_backend.Models
         public string BarrioId { get; set; } = string.Empty;
 
         [Column("calle_principal")]
-        public string CallePrincipal { get; set; }
+        public string CallePrincipal { get; set; } = string.Empty;
 
         [Column("calle_secundaria")]
         public string? CalleSecundaria { get; set; }
