@@ -12,4 +12,4 @@ ENV ASPNETCORE_URLS=http://+:10000
 
 EXPOSE 10000
 
-ENTRYPOINT ["dotnet", "ivanseg_mobile_backend.dll"]
+ENTRYPOINT ["dotnet", "ivanseg-mobile-backend.dll"]
