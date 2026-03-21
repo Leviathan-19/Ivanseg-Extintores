@@ -5,13 +5,13 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import '../utils/connectivity_service.dart';
 
 class VisitaService {
   final Box box = Hive.box('visitas');
-  Future<bool> hayInternet() async {
-    var result = await Connectivity().checkConnectivity();
-    return result != ConnectivityResult.none;
-  }
+Future<bool> hayInternet() async {
+  return await ConnectivityService().hayInternet();
+}
 
   Future<void> enviarAlBackend(Visita visita) async {
     final baseUrl = dotenv.env['API_URL'];
