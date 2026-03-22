@@ -69,3 +69,4 @@ flutter pub add flutter_dotenv
 
 flutter pub get
 ----------------------------------
+device_info_plus: ^10.1.0
