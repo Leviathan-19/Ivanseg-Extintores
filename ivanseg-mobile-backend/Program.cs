@@ -56,6 +56,7 @@ builder.WebHost.UseUrls("http://0.0.0.0:10000");
 //------------------ Build ------------------
 
 var app = builder.Build();
+app.UseRouting();
 app.UseCors("AllowAll");
 
 //------------------ Endpoint health ------------------

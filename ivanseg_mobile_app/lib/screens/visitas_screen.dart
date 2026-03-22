@@ -38,7 +38,7 @@ class _VisitasScreenState extends State<VisitasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Visitas"),
+        title: const Text("Ivanseg-Extintores"),
       ),
       body: ListView.builder(
         itemCount: visitas.length,

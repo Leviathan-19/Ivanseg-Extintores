@@ -18,7 +18,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
     if (cliente.isEmpty) return;
 
     await visitaService.guardarVisita(cliente);
-
+    print(cliente);
     clienteController.clear();
 
     ScaffoldMessenger.of(context).showSnackBar(
