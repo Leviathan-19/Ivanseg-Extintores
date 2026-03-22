@@ -1,0 +1,666 @@
+{
+  "provincias": [
+    {
+      "id": "984496a8-e19c-489e-8184-ede05e7692ea",
+      "nombre": "Pichincha",
+      "cantones": [
+        {
+          "id": "ccb09ee6-d5f2-4867-9f4a-e8de6a7fa252",
+          "nombre": "Quito",
+          "parroquias": [
+            {
+              "id": "2a0140b3-8fcf-4053-aff4-b8f3669a93e7",
+              "nombre": "Alangasí",
+              "barrios": [
+                {
+                  "id": "6a7f3024-f2bf-47a4-9ee3-d818b0dcde55",
+                  "nombre": "Alangasí"
+                }
+              ]
+            },
+            {
+              "id": "a413183d-966f-43ff-9743-d11d22a5397e",
+              "nombre": "Amaguaña",
+              "barrios": [
+                {
+                  "id": "7aeba19f-8c52-44d1-afeb-916d8ed1f0ab",
+                  "nombre": "Amaguaña"
+                }
+              ]
+            },
+            {
+              "id": "47e451b9-0964-4cab-9a5a-04bbbe75f12b",
+              "nombre": "Argelia",
+              "barrios": [
+                {
+                  "id": "f33225d6-44df-4be3-849c-d5ebbba8dbfc",
+                  "nombre": "Argelia"
+                }
+              ]
+            },
+            {
+              "id": "215b452d-b064-4335-99df-61cc075a24d9",
+              "nombre": "Atahualpa",
+              "barrios": [
+                {
+                  "id": "c3a03bd3-08dd-4d61-9ea7-949d38bd293e",
+                  "nombre": "Atahualpa"
+                }
+              ]
+            },
+            {
+              "id": "50ca3276-4d86-4ecf-abf1-da700a94a92f",
+              "nombre": "Belisario Quevedo",
+              "barrios": [
+                {
+                  "id": "d9506256-4aeb-44b2-a251-1d465c1cb4a3",
+                  "nombre": "Belisario Quevedo"
+                }
+              ]
+            },
+            {
+              "id": "fbdbce6a-7505-4352-b796-623a7c7fc529",
+              "nombre": "Calacalí",
+              "barrios": [
+                {
+                  "id": "5d69b710-a500-4e28-b336-8b9f9962bac1",
+                  "nombre": "Calacalí"
+                }
+              ]
+            },
+            {
+              "id": "713f424e-0040-4982-9f64-3a0eed77188e",
+              "nombre": "Calderón",
+              "barrios": [
+                {
+                  "id": "b07f6799-86bf-44ef-8446-a106f706216d",
+                  "nombre": "Calderón"
+                }
+              ]
+            },
+            {
+              "id": "e17b2fd6-5029-4c3f-baf5-375de2e71165",
+              "nombre": "Carcelén",
+              "barrios": [
+                {
+                  "id": "6b269262-5f4c-482b-848f-8cb252f1882a",
+                  "nombre": "Carcelén"
+                }
+              ]
+            },
+            {
+              "id": "f1a3e9ef-4015-4383-a9c8-f08e9c4d4ea0",
+              "nombre": "Centro Histórico",
+              "barrios": [
+                {
+                  "id": "54d08cce-9dfc-4512-9d8f-3a1229247332",
+                  "nombre": "Centro Histórico"
+                }
+              ]
+            },
+            {
+              "id": "61fcffce-988c-4cfb-8b8b-c4b7d753b92f",
+              "nombre": "Chavezpamba",
+              "barrios": [
+                {
+                  "id": "78be42e4-843a-4831-aaa9-7019bef934a6",
+                  "nombre": "Chavezpamba"
+                }
+              ]
+            },
+            {
+              "id": "9db0c839-65e3-40f9-9b9c-6e7b4ed2f1a0",
+              "nombre": "Checa",
+              "barrios": [
+                {
+                  "id": "1d09a341-36a2-43cb-bdc5-7390ab69c565",
+                  "nombre": "Checa"
+                }
+              ]
+            },
+            {
+              "id": "72ef9b27-1ce8-45d9-9333-cbf8aa9efb40",
+              "nombre": "Chilibulo",
+              "barrios": [
+                {
+                  "id": "15c0d945-7f40-4a21-aeaf-065fef3d3922",
+                  "nombre": "Chilibulo"
+                }
+              ]
+            },
+            {
+              "id": "9c195c33-c1c3-4226-a4f4-2a211e768f02",
+              "nombre": "Chillogallo",
+              "barrios": [
+                {
+                  "id": "ec31bdbe-4f68-4cec-8986-6d69e5efb607",
+                  "nombre": "Chillogallo"
+                }
+              ]
+            },
+            {
+              "id": "203f848b-55fb-4e4b-819f-2e8ec9f63865",
+              "nombre": "Chimbacalle",
+              "barrios": [
+                {
+                  "id": "c261fc47-2751-48e5-864f-1777d805fa6f",
+                  "nombre": "Chimbacalle"
+                }
+              ]
+            },
+            {
+              "id": "29d4ab0c-48c9-4f79-9a86-91acd09828c9",
+              "nombre": "Cochapamba",
+              "barrios": [
+                {
+                  "id": "691f1d42-2e9d-4b72-9430-46acbcf3d5b4",
+                  "nombre": "Cochapamba"
+                }
+              ]
+            },
+            {
+              "id": "fe43f159-257e-4802-89e2-3bfdfda94b52",
+              "nombre": "Comité del Pueblo",
+              "barrios": [
+                {
+                  "id": "162bc959-099d-436d-8c92-6698eec8b7a5",
+                  "nombre": "Comité del Pueblo"
+                }
+              ]
+            },
+            {
+              "id": "24d76c91-c889-44a2-80cd-91a3c2ac2052",
+              "nombre": "Concepción",
+              "barrios": [
+                {
+                  "id": "17340d3e-cce5-4146-9367-2df187a4b100",
+                  "nombre": "Concepción"
+                }
+              ]
+            },
+            {
+              "id": "9a590a8d-ea3c-4428-92d3-7a7b30a2bfa3",
+              "nombre": "Condado",
+              "barrios": [
+                {
+                  "id": "6133313a-1a26-4c66-a3af-912f5df9dc59",
+                  "nombre": "Condado"
+                }
+              ]
+            },
+            {
+              "id": "9013283e-c2e6-4db8-bf6c-8013b0a668a4",
+              "nombre": "Conocoto",
+              "barrios": [
+                {
+                  "id": "677d302d-6054-45e7-9077-8a99104933db",
+                  "nombre": "Conocoto"
+                }
+              ]
+            },
+            {
+              "id": "05e887d7-f282-44b1-9bbe-cd14192cd444",
+              "nombre": "Cotocollao",
+              "barrios": [
+                {
+                  "id": "b2068657-45c1-4c31-b049-674c15215d10",
+                  "nombre": "Cotocollao"
+                }
+              ]
+            },
+            {
+              "id": "729bb18b-85cf-41cb-b008-30e4e3620435",
+              "nombre": "Cumbayá",
+              "barrios": [
+                {
+                  "id": "74254c55-eaae-4b9a-ae89-0f1256707385",
+                  "nombre": "Cumbayá"
+                }
+              ]
+            },
+            {
+              "id": "56aae9a4-ebe4-49be-a70b-48aed853919a",
+              "nombre": "Ecuatoriana",
+              "barrios": [
+                {
+                  "id": "c7b6e526-2d10-4808-9e96-d9787d7b36de",
+                  "nombre": "Ecuatoriana"
+                }
+              ]
+            },
+            {
+              "id": "424831e9-6ec7-4e5b-a709-9e56b0e66d76",
+              "nombre": "El Inca",
+              "barrios": [
+                {
+                  "id": "c7e93a3a-55ab-4803-a745-3e55933f7a90",
+                  "nombre": "El Inca"
+                }
+              ]
+            },
+            {
+              "id": "6cc51453-ff32-4ac3-b32f-4bbe438ba234",
+              "nombre": "El Quinche",
+              "barrios": [
+                {
+                  "id": "d61313b1-f868-42e3-b700-d2b14fadcdbf",
+                  "nombre": "El Quinche"
+                }
+              ]
+            },
+            {
+              "id": "df3c2a13-272d-4e13-b47b-dc294f5d5e7e",
+              "nombre": "Ferroviaria",
+              "barrios": [
+                {
+                  "id": "12fc0421-de57-41e6-a932-4d06a7521a4d",
+                  "nombre": "Ferroviaria"
+                }
+              ]
+            },
+            {
+              "id": "b6fd182f-d888-46ad-9fa8-f895aa93cf24",
+              "nombre": "Gualea",
+              "barrios": [
+                {
+                  "id": "59635dec-d9ff-4203-a8a6-2adf97a0b60c",
+                  "nombre": "Gualea"
+                }
+              ]
+            },
+            {
+              "id": "c9c453a5-8971-4056-a412-de5220d27231",
+              "nombre": "Guamaní",
+              "barrios": [
+                {
+                  "id": "f2d0139b-a7a9-44cc-b596-5e7d13fbb0fc",
+                  "nombre": "Guamaní"
+                }
+              ]
+            },
+            {
+              "id": "b8b45e26-1320-4efe-8921-160ace871775",
+              "nombre": "Guangopolo",
+              "barrios": [
+                {
+                  "id": "022f8f83-ab76-4813-b5c4-bbbe0c9af4d9",
+                  "nombre": "Guangopolo"
+                }
+              ]
+            },
+            {
+              "id": "54d10202-e355-44d9-a922-00dff36293c7",
+              "nombre": "Guayllabamba",
+              "barrios": [
+                {
+                  "id": "471bba78-e405-411b-b6bb-11492541ca3b",
+                  "nombre": "Guayllabamba"
+                }
+              ]
+            },
+            {
+              "id": "bfbed286-91e6-4fcd-a1bf-3e54b7eeeffc",
+              "nombre": "Iñaquito",
+              "barrios": [
+                {
+                  "id": "10c15602-b8da-46f6-b13c-9ce68d47481d",
+                  "nombre": "Iñaquito"
+                }
+              ]
+            },
+            {
+              "id": "b93bf5e3-a763-4e2c-a4b5-d7ca83ba5f38",
+              "nombre": "Itchimbía",
+              "barrios": [
+                {
+                  "id": "62dd4d09-9da0-4c89-a507-9fdf5110cff7",
+                  "nombre": "Itchimbía"
+                }
+              ]
+            },
+            {
+              "id": "10f563a3-e555-4224-bc00-a4aea5d8ff8a",
+              "nombre": "Jipijapa",
+              "barrios": [
+                {
+                  "id": "b013b22d-78f2-4e49-a5ca-46da16db624a",
+                  "nombre": "Jipijapa"
+                }
+              ]
+            },
+            {
+              "id": "a63eec18-62c3-434d-afc7-658c138958e3",
+              "nombre": "Kennedy",
+              "barrios": [
+                {
+                  "id": "54bd6066-e7ac-4ba4-9105-edeca56ce551",
+                  "nombre": "Kennedy"
+                }
+              ]
+            },
+            {
+              "id": "e96229ff-0692-47f1-b932-0bb1ddbdcd4e",
+              "nombre": "La Libertad",
+              "barrios": [
+                {
+                  "id": "378b65ed-164c-44ed-bd5d-84f9cc5fc01a",
+                  "nombre": "La Libertad"
+                }
+              ]
+            },
+            {
+              "id": "1e2bcab1-b073-4003-9624-6e5b9c0d01d3",
+              "nombre": "La Magdalena",
+              "barrios": [
+                {
+                  "id": "8550622d-a0e8-442f-a27e-c389ae8b69e2",
+                  "nombre": "La Magdalena"
+                }
+              ]
+            },
+            {
+              "id": "dacc11c5-af57-4a9c-a52a-bfbc8448d425",
+              "nombre": "La Mena",
+              "barrios": [
+                {
+                  "id": "2d2ccad0-9532-4f34-acc0-9e410d32b421",
+                  "nombre": "La Mena"
+                }
+              ]
+            },
+            {
+              "id": "4b3bcde2-31ea-4f45-9ebc-93f518710b0b",
+              "nombre": "La Merced",
+              "barrios": [
+                {
+                  "id": "50897e09-567a-49a8-a66b-01639470b49e",
+                  "nombre": "La Merced"
+                }
+              ]
+            },
+            {
+              "id": "aeacf098-83ac-4dd6-8f58-c99d1c903c55",
+              "nombre": "Llano Chico",
+              "barrios": [
+                {
+                  "id": "2872de88-c63d-4526-a829-75df1959d3a7",
+                  "nombre": "Llano Chico"
+                }
+              ]
+            },
+            {
+              "id": "094d8d72-1dfe-4551-aa29-8ea4fd374632",
+              "nombre": "Lloa",
+              "barrios": [
+                {
+                  "id": "00915689-de6b-47d7-84eb-15de6190a08b",
+                  "nombre": "Lloa"
+                }
+              ]
+            },
+            {
+              "id": "0f1596b4-9fde-4600-af83-f720a4a0b0da",
+              "nombre": "Mariscal Sucre",
+              "barrios": [
+                {
+                  "id": "5f5ac177-6c3f-4b31-9903-eaed50f6213b",
+                  "nombre": "Mariscal Sucre"
+                }
+              ]
+            },
+            {
+              "id": "ab6a628b-879f-4360-a687-6c3747eb4768",
+              "nombre": "Nanegal",
+              "barrios": [
+                {
+                  "id": "0d009e71-c198-42d4-a9d4-789d4d4332f3",
+                  "nombre": "Nanegal"
+                }
+              ]
+            },
+            {
+              "id": "78882b2e-fdca-468d-94ca-6aa992b46e24",
+              "nombre": "Nanegalito",
+              "barrios": [
+                {
+                  "id": "1c4a3bd0-79d3-444a-b75d-5116e3eae6a7",
+                  "nombre": "Nanegalito"
+                }
+              ]
+            },
+            {
+              "id": "5d776eed-e667-4987-9da4-74444f2c42a4",
+              "nombre": "Nayón",
+              "barrios": [
+                {
+                  "id": "936a6c4a-fba3-42d5-8bfe-22c04166124e",
+                  "nombre": "Nayón"
+                }
+              ]
+            },
+            {
+              "id": "b03dd199-92e1-4be0-a17b-b5ae7f16c04c",
+              "nombre": "Nono",
+              "barrios": [
+                {
+                  "id": "fe990277-b9c0-4da8-bb94-d887a3962ae6",
+                  "nombre": "Nono"
+                }
+              ]
+            },
+            {
+              "id": "760c52da-f200-4fed-8918-6cc1ffa6f51c",
+              "nombre": "Pacto",
+              "barrios": [
+                {
+                  "id": "06ba87f5-b241-4ecb-b829-932fc180a719",
+                  "nombre": "Pacto"
+                }
+              ]
+            },
+            {
+              "id": "fd23387c-1dbe-452c-a54f-f0aaaf4def03",
+              "nombre": "Perucho",
+              "barrios": [
+                {
+                  "id": "0aedeef0-f92c-4428-83a1-1474d348860b",
+                  "nombre": "Perucho"
+                }
+              ]
+            },
+            {
+              "id": "cb228e3c-355d-4b3c-8bb0-7f7eee944a9e",
+              "nombre": "Pifo",
+              "barrios": [
+                {
+                  "id": "7284e62d-8fea-4533-80c1-be10b939b01d",
+                  "nombre": "Pifo"
+                }
+              ]
+            },
+            {
+              "id": "167a1535-571e-4858-aef6-b13739eb37b8",
+              "nombre": "Píntag",
+              "barrios": [
+                {
+                  "id": "ee13cd73-8b17-47d5-b66e-c7c534d01dde",
+                  "nombre": "Píntag"
+                }
+              ]
+            },
+            {
+              "id": "d6520ac3-a844-4405-9013-78729792ab39",
+              "nombre": "Pomasqui",
+              "barrios": [
+                {
+                  "id": "d21cf090-e248-4151-9761-588ab288fb25",
+                  "nombre": "Pomasqui"
+                }
+              ]
+            },
+            {
+              "id": "33a854db-4ddc-499d-85ad-11902f3dd995",
+              "nombre": "Ponceano",
+              "barrios": [
+                {
+                  "id": "acd431ea-ecb4-40e2-b516-7cd7a88dfa3b",
+                  "nombre": "Ponceano"
+                }
+              ]
+            },
+            {
+              "id": "97768f12-52c2-4da6-bed3-781beb706af2",
+              "nombre": "Puellaro",
+              "barrios": [
+                {
+                  "id": "07da3dba-4f4d-4928-877b-40d3586c0b6d",
+                  "nombre": "Puellaro"
+                }
+              ]
+            },
+            {
+              "id": "3e3e90dc-e606-488c-9798-0185107bda0a",
+              "nombre": "Puembo",
+              "barrios": [
+                {
+                  "id": "a8197b46-7971-4c55-b598-7f0bf486f3f9",
+                  "nombre": "Puembo"
+                }
+              ]
+            },
+            {
+              "id": "5eb3dad3-2225-4e74-a538-08d144fce6d9",
+              "nombre": "Puengasí",
+              "barrios": [
+                {
+                  "id": "9b29a373-3de8-46fa-8bf7-9cb522c464d2",
+                  "nombre": "Puengasí"
+                }
+              ]
+            },
+            {
+              "id": "b5fded6e-2543-4a11-bd80-25360b9f79ba",
+              "nombre": "Quitumbe",
+              "barrios": [
+                {
+                  "id": "84bccc66-ee8f-49c9-a880-47b23cf8c6a4",
+                  "nombre": "Quitumbe"
+                }
+              ]
+            },
+            {
+              "id": "c2bb2ca5-af09-4c2c-a22d-019d03012b66",
+              "nombre": "Rumipamba",
+              "barrios": [
+                {
+                  "id": "280305a4-328c-40e8-97d8-35db718bcabd",
+                  "nombre": "Rumipamba"
+                }
+              ]
+            },
+            {
+              "id": "b479861a-dc98-444d-a0ad-02295d274b7d",
+              "nombre": "San Antonio de Pichincha",
+              "barrios": [
+                {
+                  "id": "40b9d454-0ac2-44b8-8558-69892659f080",
+                  "nombre": "San Antonio de Pichincha"
+                }
+              ]
+            },
+            {
+              "id": "4a18b385-1d56-40db-87d6-d5e8b7d92fcb",
+              "nombre": "San Bartolo",
+              "barrios": [
+                {
+                  "id": "6cecfbc9-5ce1-4e23-8d32-dedd525a6960",
+                  "nombre": "San Bartolo"
+                }
+              ]
+            },
+            {
+              "id": "cca43cf4-f375-4ccd-8b93-c2a7aef60c22",
+              "nombre": "San José de Minas",
+              "barrios": [
+                {
+                  "id": "db9d3786-d612-43b8-9e4d-52996de43aea",
+                  "nombre": "San José de Minas"
+                }
+              ]
+            },
+            {
+              "id": "41e52c1c-2fec-4856-95c6-36beaf1377a1",
+              "nombre": "San Juan",
+              "barrios": [
+                {
+                  "id": "b41982a0-bcb4-4b83-ad92-bdf9ce692c68",
+                  "nombre": "San Juan"
+                }
+              ]
+            },
+            {
+              "id": "14f0e4d4-dc52-4013-8692-1379f1b968bd",
+              "nombre": "Solanda",
+              "barrios": [
+                {
+                  "id": "7f4012ec-f2ec-4e13-af5e-742f2fab5c86",
+                  "nombre": "Solanda"
+                }
+              ]
+            },
+            {
+              "id": "eaecd42e-d250-47a3-8f27-429342f5a06b",
+              "nombre": "Tababela",
+              "barrios": [
+                {
+                  "id": "c5545cb3-deb6-423b-81d4-c1b5569fb41d",
+                  "nombre": "Tababela"
+                }
+              ]
+            },
+            {
+              "id": "349b47cc-cf61-4afb-b4db-757d68345fb9",
+              "nombre": "Tumbaco",
+              "barrios": [
+                {
+                  "id": "5ff6f72e-3636-4306-b07e-972fe3ff9874",
+                  "nombre": "Tumbaco"
+                }
+              ]
+            },
+            {
+              "id": "aca8682e-31a4-4e48-9391-6816f0907126",
+              "nombre": "Turubamba",
+              "barrios": [
+                {
+                  "id": "468fa5f8-e7a8-47d7-a532-3bdc37e2353f",
+                  "nombre": "Turubamba"
+                }
+              ]
+            },
+            {
+              "id": "5118badc-c544-4557-bb43-06b4054c4f7c",
+              "nombre": "Yaruquí",
+              "barrios": [
+                {
+                  "id": "7bc1c5e7-9fb6-4dbc-b159-a32d4380549a",
+                  "nombre": "Yaruquí"
+                }
+              ]
+            },
+            {
+              "id": "666a84bb-b693-43cb-8dce-bea7c1eb41f5",
+              "nombre": "Zámbiza",
+              "barrios": [
+                {
+                  "id": "08b7ae05-ab08-4564-be36-d089c146130b",
+                  "nombre": "Zámbiza"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
