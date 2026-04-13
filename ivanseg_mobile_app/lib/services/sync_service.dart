@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import '../models/visita_model.dart';
 import 'visita_service.dart';
 import '../utils/connectivity_service.dart';

@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 import '../models/visita_model.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;

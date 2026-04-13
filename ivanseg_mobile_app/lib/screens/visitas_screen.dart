@@ -4,9 +4,15 @@ import '../models/visita_model.dart';
 import '../utils/app_theme.dart';
 import 'crear_visita_screen.dart';
 import 'detalle_visita_screen.dart';
+import '../services/ubicacion_service.dart';
 
 class VisitasScreen extends StatefulWidget {
-  const VisitasScreen({super.key});
+  final UbicacionService ubicacionService;
+
+  const VisitasScreen({
+    super.key,
+    required this.ubicacionService,
+  });
 
   @override
   State<VisitasScreen> createState() => _VisitasScreenState();
@@ -82,9 +88,7 @@ class _VisitasScreenState extends State<VisitasScreen> {
   void _irDetalle(Visita visita) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => DetalleVisitaScreen(visita: visita),
-      ),
+      MaterialPageRoute(builder: (_) => DetalleVisitaScreen(visita: visita)),
     );
   }
 
@@ -122,45 +126,35 @@ class _VisitasScreenState extends State<VisitasScreen> {
               ),
             )
           : _visitas.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.inbox,
-                        size: 80,
-                        color: Colors.grey[400],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'No hay visitas registradas',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Presiona el botón + para crear una nueva visita',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[500],
-                        ),
-                      ),
-                    ],
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.inbox, size: 80, color: Colors.grey[400]),
+                  const SizedBox(height: 16),
+                  Text(
+                    'No hay visitas registradas',
+                    style: TextStyle(fontSize: 18, color: Colors.grey[600]),
                   ),
-                )
-              : RefreshIndicator(
-                  onRefresh: _cargarVisitas,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    itemCount: _visitas.length,
-                    itemBuilder: (context, index) {
-                      final visita = _visitas[index];
-                      return _buildVisitaCard(visita);
-                    },
+                  const SizedBox(height: 8),
+                  Text(
+                    'Presiona el botón + para crear una nueva visita',
+                    style: TextStyle(fontSize: 14, color: Colors.grey[500]),
                   ),
-                ),
+                ],
+              ),
+            )
+          : RefreshIndicator(
+              onRefresh: _cargarVisitas,
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                itemCount: _visitas.length,
+                itemBuilder: (context, index) {
+                  final visita = _visitas[index];
+                  return _buildVisitaCard(visita);
+                },
+              ),
+            ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _irCrear,
         icon: const Icon(Icons.add),
@@ -296,7 +290,11 @@ class _VisitasScreenState extends State<VisitasScreen> {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Row(
                     children: [
-                      const Icon(Icons.location_on, size: 16, color: Colors.grey),
+                      const Icon(
+                        Icons.location_on,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -309,7 +307,8 @@ class _VisitasScreenState extends State<VisitasScreen> {
                     ],
                   ),
                 ),
-              if (visita.estadoVisita != null && visita.estadoVisita!.isNotEmpty)
+              if (visita.estadoVisita != null &&
+                  visita.estadoVisita!.isNotEmpty)
                 Container(
                   margin: const EdgeInsets.only(top: 8),
                   padding: const EdgeInsets.symmetric(

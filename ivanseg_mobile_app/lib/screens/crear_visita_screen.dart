@@ -451,7 +451,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
     required String Function(T) displayName,
   }) {
     return DropdownButtonFormField<T>(
-      value: value,
+      initialValue: value,
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(icon, color: AppTheme.primaryColor),

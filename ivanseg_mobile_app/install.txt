@@ -65,8 +65,7 @@ flutter pub add hive
 flutter pub add uuid
 flutter pub add http
 flutter pub add flutter_dotenv
-
-
+flutter pub add device_info_plus
 flutter pub get
 ----------------------------------
 device_info_plus: ^10.1.0
