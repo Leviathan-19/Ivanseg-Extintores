@@ -5,7 +5,12 @@ import '../models/ubicacion_model.dart';
 import '../utils/app_theme.dart';
 
 class CrearVisitaScreen extends StatefulWidget {
-  const CrearVisitaScreen({super.key});
+  final UbicacionService ubicacionService;
+
+  const CrearVisitaScreen({
+    super.key,
+    required this.ubicacionService,
+  });
 
   @override
   State<CrearVisitaScreen> createState() => _CrearVisitaScreenState();
@@ -46,7 +51,8 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
 
   void _cargarProvincias() {
     print("Cargando provincias...");
-    print("Provincias disponibles: ${_ubicacionService.provincias.length}");
+     // CAMBIAR: usar widget.ubicacionService en lugar de _ubicacionService
+    print("Provincias disponibles: ${widget.ubicacionService.provincias.length}");
     
     setState(() {
       _provincias = _ubicacionService.provincias;
@@ -68,7 +74,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       _selectedBarrio = null;
       
       _cantones = provincia != null 
-          ? _ubicacionService.getCantones(provincia.id) 
+          ? widget.ubicacionService.getCantones(provincia.id)  
           : [];
       _parroquias = [];
       _barrios = [];
@@ -85,7 +91,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       _selectedBarrio = null;
       
       _parroquias = canton != null 
-          ? _ubicacionService.getParroquias(canton.id) 
+          ? widget.ubicacionService.getParroquias(canton.id) 
           : [];
       _barrios = [];
       
@@ -100,7 +106,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       _selectedBarrio = null;
       
       _barrios = parroquia != null 
-          ? _ubicacionService.getBarrios(parroquia.id) 
+          ? widget.ubicacionService.getBarrios(parroquia.id) 
           : [];
       
       print("Barrios encontrados: ${_barrios.length}");
@@ -120,7 +126,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       initialDate: _proximaVisita,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
-      locale: const Locale('es', 'ES'),
+      //locale: const Locale('es', 'ES'),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(

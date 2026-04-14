@@ -78,7 +78,7 @@ class _VisitasScreenState extends State<VisitasScreen> {
   Future<void> _irCrear() async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const CrearVisitaScreen()),
+      MaterialPageRoute(builder: (_) => CrearVisitaScreen(ubicacionService: widget.ubicacionService))
     );
     if (result == true) {
       await _cargarVisitas();
