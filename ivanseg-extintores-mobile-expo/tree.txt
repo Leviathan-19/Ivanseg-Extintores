@@ -1,0 +1,33 @@
+ivanseg-extintores-mobile/
+
+src/
+│
+├── assets/
+│
+├── components/
+│
+├── screens/
+│   ├── auth/
+│   ├── home/
+│   ├── products/
+│   ├── services/
+│   ├── profile/
+│   └── maintenance/
+│
+├── navigation/
+│
+├── services/
+│
+├── api/
+│
+├── hooks/
+│
+├── contexts/
+│
+├── types/
+│
+├── utils/
+│
+└── constants/
+
+App.tsx
