@@ -7,10 +7,7 @@ import '../utils/app_theme.dart';
 class CrearVisitaScreen extends StatefulWidget {
   final UbicacionService ubicacionService;
 
-  const CrearVisitaScreen({
-    super.key,
-    required this.ubicacionService,
-  });
+  const CrearVisitaScreen({super.key, required this.ubicacionService});
 
   @override
   State<CrearVisitaScreen> createState() => _CrearVisitaScreenState();
@@ -25,10 +22,10 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
   final _callePrincipalController = TextEditingController();
   final _calleSecundariaController = TextEditingController();
   final _numeracionController = TextEditingController();
-  
+
   String _estadoVisita = 'pendiente';
   final List<String> _estadosVisita = ['pendiente', 'realizado', 'desconocido'];
-  
+
   DateTime _proximaVisita = DateTime.now().add(const Duration(days: 7));
   Provincia? _selectedProvincia;
   Canton? _selectedCanton;
@@ -38,9 +35,8 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
   List<Canton> _cantones = [];
   List<Parroquia> _parroquias = [];
   List<Barrio> _barrios = [];
-  
+
   final VisitaService _visitaService = VisitaService();
-  final UbicacionService _ubicacionService = UbicacionService();
   bool _isLoading = false;
 
   @override
@@ -51,17 +47,20 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
 
   void _cargarProvincias() {
     print("Cargando provincias...");
-     // CAMBIAR: usar widget.ubicacionService en lugar de _ubicacionService
-    print("Provincias disponibles: ${widget.ubicacionService.provincias.length}");
-    
+    print(
+      "Provincias disponibles: ${widget.ubicacionService.provincias.length}",
+    );
+
     setState(() {
-      _provincias = _ubicacionService.provincias;
+      _provincias = widget.ubicacionService.provincias;
     });
-    
+
     if (_provincias.isEmpty) {
       print("No hay provincias cargadas!");
     } else {
-      print("Provincias cargadas: ${_provincias.map((p) => p.nombre).join(', ')}");
+      print(
+        "Provincias cargadas: ${_provincias.map((p) => p.nombre).join(', ')}",
+      );
     }
   }
 
@@ -72,13 +71,13 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       _selectedCanton = null;
       _selectedParroquia = null;
       _selectedBarrio = null;
-      
-      _cantones = provincia != null 
-          ? widget.ubicacionService.getCantones(provincia.id)  
+
+      _cantones = provincia != null
+          ? widget.ubicacionService.getCantones(provincia.id)
           : [];
       _parroquias = [];
       _barrios = [];
-      
+
       print("📊 Cantones encontrados: ${_cantones.length}");
     });
   }
@@ -89,12 +88,12 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       _selectedCanton = canton;
       _selectedParroquia = null;
       _selectedBarrio = null;
-      
-      _parroquias = canton != null 
-          ? widget.ubicacionService.getParroquias(canton.id) 
+
+      _parroquias = canton != null
+          ? widget.ubicacionService.getParroquias(canton.id)
           : [];
       _barrios = [];
-      
+
       print("Parroquias encontradas: ${_parroquias.length}");
     });
   }
@@ -104,11 +103,11 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
     setState(() {
       _selectedParroquia = parroquia;
       _selectedBarrio = null;
-      
-      _barrios = parroquia != null 
-          ? widget.ubicacionService.getBarrios(parroquia.id) 
+
+      _barrios = parroquia != null
+          ? widget.ubicacionService.getBarrios(parroquia.id)
           : [];
-      
+
       print("Barrios encontrados: ${_barrios.length}");
     });
   }
@@ -140,7 +139,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
         );
       },
     );
-    
+
     if (picked != null && picked != _proximaVisita) {
       setState(() {
         _proximaVisita = picked;
@@ -151,7 +150,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
 
   Future<void> _guardar() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     // Validar que se haya seleccionado un barrio
     if (_selectedBarrio == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -162,9 +161,9 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       );
       return;
     }
-    
+
     setState(() => _isLoading = true);
-    
+
     try {
       final provinciaNombre = _selectedProvincia?.nombre ?? '';
       final cantonNombre = _selectedCanton?.nombre ?? '';
@@ -172,7 +171,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       final barrioNombre = _selectedBarrio?.nombre ?? '';
       final barrioId = _selectedBarrio?.id ?? '';
       final fechaFormateada = _proximaVisita.toIso8601String().split('T')[0];
-      
+
       await _visitaService.guardarVisitaCompleta(
         cliente: _clienteController.text,
         razonSocial: _razonSocialController.text,
@@ -189,7 +188,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
         calleSecundaria: _calleSecundariaController.text,
         numeracion: _numeracionController.text,
       );
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -229,10 +228,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Nueva Visita'),
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text('Nueva Visita'), elevation: 0),
       body: _isLoading
           ? const Center(
               child: Column(
@@ -300,9 +296,12 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                         ),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 24),
-                    _buildSectionTitle('Detalles de la Visita', Icons.assignment),
+                    _buildSectionTitle(
+                      'Detalles de la Visita',
+                      Icons.assignment,
+                    ),
                     const SizedBox(height: 16),
                     _buildDropdownField<String>(
                       value: _estadoVisita,
@@ -319,16 +318,16 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                       },
                       displayName: (estado) => estado,
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     _buildFechaField(),
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     _buildSectionTitle('Ubicación', Icons.location_on),
                     const SizedBox(height: 16),
-                    
+
                     _buildDropdownField<Provincia>(
                       value: _selectedProvincia,
                       items: _provincias,
@@ -337,9 +336,9 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                       onChanged: _onProvinciaChanged,
                       displayName: (provincia) => provincia.nombre,
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     if (_selectedProvincia != null)
                       _buildDropdownField<Canton>(
                         value: _selectedCanton,
@@ -349,9 +348,9 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                         onChanged: _onCantonChanged,
                         displayName: (canton) => canton.nombre,
                       ),
-                    
+
                     if (_selectedProvincia != null) const SizedBox(height: 16),
-                    
+
                     if (_selectedCanton != null)
                       _buildDropdownField<Parroquia>(
                         value: _selectedParroquia,
@@ -361,9 +360,9 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                         onChanged: _onParroquiaChanged,
                         displayName: (parroquia) => parroquia.nombre,
                       ),
-                    
+
                     if (_selectedCanton != null) const SizedBox(height: 16),
-                    
+
                     if (_selectedParroquia != null)
                       _buildDropdownField<Barrio>(
                         value: _selectedBarrio,
@@ -373,9 +372,9 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                         onChanged: _onBarrioChanged,
                         displayName: (barrio) => barrio.nombre,
                       ),
-                    
+
                     if (_selectedParroquia != null) const SizedBox(height: 16),
-                    
+
                     _buildSectionTitle('Dirección', Icons.home),
                     const SizedBox(height: 16),
                     _buildTextField(
@@ -396,14 +395,23 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                       icon: Icons.numbers,
                       keyboardType: TextInputType.number,
                     ),
-                    
+
                     const SizedBox(height: 32),
-                    
-                    ElevatedButton(
-                      onPressed: _guardar,
-                      child: const Text('Guardar Visita'),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _isLoading ? null : _guardar,
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                        ),
+                        child: const Text(
+                          'Guardar Visita',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
                     ),
-                    
+
                     const SizedBox(height: 16),
                   ],
                 ),
@@ -417,10 +425,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       children: [
         Icon(icon, color: AppTheme.primaryColor, size: 24),
         const SizedBox(width: 8),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
       ],
     );
   }
@@ -439,9 +444,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
         labelText: label,
         hintText: hintText,
         prefixIcon: Icon(icon, color: AppTheme.primaryColor),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       ),
       keyboardType: keyboardType,
       validator: validator,
@@ -461,15 +464,10 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(icon, color: AppTheme.primaryColor),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       ),
       items: items.map((item) {
-        return DropdownMenuItem(
-          value: item,
-          child: Text(displayName(item)),
-        );
+        return DropdownMenuItem(value: item, child: Text(displayName(item)));
       }).toList(),
       onChanged: onChanged,
       isExpanded: true,
@@ -501,10 +499,7 @@ class _CrearVisitaScreenState extends State<CrearVisitaScreen> {
                 children: [
                   Text(
                     'Próxima Visita *',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade600,
-                    ),
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
                   ),
                   Text(
                     _proximaVisita.toLocal().toString().split(' ')[0],

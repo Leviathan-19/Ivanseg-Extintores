@@ -26,9 +26,9 @@ class SyncService {
           visita.sincronizado = true;
           await box.putAt(i, visita.toJson());
 
-          print("✅ Visita sincronizada: ${visita.visitaOfflineId}");
+          print("Visita sincronizada: ${visita.visitaOfflineId}");
         } catch (e) {
-          print("❌ Error al sincronizar: ${visita.visitaOfflineId}");
+          print("Error al sincronizar: ${visita.visitaOfflineId}");
         }
       }
     }
