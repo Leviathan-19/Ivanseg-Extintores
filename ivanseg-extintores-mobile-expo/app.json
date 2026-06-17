@@ -1,13 +1,12 @@
 {
   "expo": {
-    "name": "ivanseg-extintores-mobile",
+    "name": "Ivanseg Extintores",
     "slug": "ivanseg-extintores-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/Logo_ivanseg.png",
     "scheme": "ivansegextintoresmobile",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
